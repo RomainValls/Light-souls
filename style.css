@@ -1,0 +1,86 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+#start {
+    margin-bottom: 20px;
+}
+.grid {
+	width: 505px;
+	aspect-ratio: 2;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.cell {
+	width: 50px;
+	aspect-ratio: 1;
+	border: 1px solid black;
+}
+
+.target {
+	background-color: chartreuse;
+}
+
+.targetTwo {
+    background-color: orangered;
+}
+.player {
+	background-color: dodgerblue;
+}
+
+#dialog1 {
+    border: 2px solid black;
+    position : fixed;
+    top : 60vh;
+    left: 50%;
+    width: auto;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#dialog1 p {
+    padding: 10px;
+}
+
+#dialog2 {
+    border: 2px solid black;
+    position : fixed;
+    top : 80vh;
+    left: 50%;
+    width: 60vw;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#dialog2 p {
+    padding: 10px; 
+}
+
+#button1, #button2{
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #dialog1 button:hover {
+    background-color: pink;
+  }
