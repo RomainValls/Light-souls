@@ -4,14 +4,30 @@
 
 body {
     display:flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
     padding-top: 30px;
 }
 
+h2 {
+    text-align: center;
+    border: 3px solid black;
+}
+.user-interface {
+    justify-content: center;
+    align-items: center;
+    display: none;
+    aspect-ratio: 1;
+    width: 505px;
+    margin: 10px;
+}
+
 #start {
     margin-bottom: 20px;
+    height : 150px;
+    margin: 5px;
+    border-radius: 20px;
 }
 .grid {
 	width: 505px;
@@ -21,7 +37,7 @@ body {
 }
 
 .cell {
-	width: 50px;
+	width: 10%;
 	aspect-ratio: 1;
 	border: 1px solid black;
 }
@@ -30,9 +46,30 @@ body {
 	background-color: chartreuse;
 }
 
+.exit {
+    background-image: url('images/exit-door.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.targetThree {
+    background-color: aquamarine;
+}
+
+.targetFour {
+    
+    background-image: url('images/alligator.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+
 .targetTwo {
     background-color: orangered;
 }
+
 .player {
 	background-color: dodgerblue;
 }
@@ -40,12 +77,13 @@ body {
 #dialog1 {
     border: 2px solid black;
     position : fixed;
-    top : 60vh;
-    left: 50%;
+    background-color: blueviolet;
+    /* top : 60vh;
+    left: 50%; */
     width: auto;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 10px;
 }
@@ -71,7 +109,7 @@ body {
     padding: 10px; 
 }
 
-#button1, #button2{
+#button1, #button2, #button3, #button4{
     margin: 10px;
     padding: 10px 20px;
     border: none;
