@@ -14,13 +14,36 @@ h2 {
     text-align: center;
     border: 3px solid black;
 }
+
 .user-interface {
-    justify-content: center;
-    align-items: center;
     display: none;
     aspect-ratio: 1;
     width: 505px;
     margin: 10px;
+    flex-direction: column;
+}
+
+.user-interface button {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    background: goldenrod;
+    padding: 1.1rem 3.4rem;
+    border-radius: .2rem;
+    transition: opacity .2s;
+    
+    }
+    
+.user-interface button:hover {
+    cursor: pointer;
+    background: #053056;
+    }
+
+.sword {
+    background-image: url('images/dagger.png');
+    background-size: cover;
+    height: 7rem;
+    width: 7rem;
 }
 
 #start {
@@ -66,6 +89,16 @@ h2 {
     
 }
 
+.targetFive {
+    background-color: pink;
+}
+.targetSix {
+    background-image: url('images/alligator.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .targetTwo {
     background-color: orangered;
 }
@@ -74,7 +107,7 @@ h2 {
 	background-color: dodgerblue;
 }
 
-#dialog1 {
+#dialog1, #dialog3, #dialog4, #dialog5, #dialog6 {
     border: 2px solid black;
     position : fixed;
     background-color: blueviolet;
