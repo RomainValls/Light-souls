@@ -641,7 +641,7 @@ function move4(direction) {
 
       buttonBoss.addEventListener("click", () => {
         dialogDivBoss.remove();
-
+        let intervalId;
         let currentPosition = -10;
         const divsArray = document.querySelectorAll(".cell");
         bossAttack();
@@ -664,7 +664,7 @@ function move4(direction) {
             }
           }
 
-          setInterval(() => {
+          intervalId = setInterval(() => {
             const class1Divs = document.querySelectorAll(".class1");
             // let counterAttack = 0
 
@@ -698,6 +698,7 @@ function move4(direction) {
               } else if (currentPosition >= 90) {
                 console.log("coucou =================");
                 divsArray[currentPosition].classList.remove("class2");
+                clearInterval(intervalId);
               }
             }
 
@@ -724,7 +725,7 @@ function move4(direction) {
             ) {
               bossAttack();
             }
-          }, 1000);
+          }, 500);
         }
       });
 
