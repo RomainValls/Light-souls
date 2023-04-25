@@ -1,12 +1,13 @@
 const startButton = document.getElementById("start");
 const gridElement = document.querySelector(".grid");
 const allTheCells = [];
-let playerPosition = 90;
+let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 4;
+let level = 1;
 let choice;
+let choiceTwo;
 let finalBoss;
 startButton.addEventListener("click", startTheGame);
 
@@ -37,12 +38,14 @@ function startTheGame() {
   userInterface.style.backgroundColor = "transparent";
 
   if (level === 1) {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       createACell();
     }
+
+    playerPosition = 90;
     // target = Math.floor(Math.random() * allTheCells.length - 1) + 1
     // target2 = Math.floor(Math.random() * allTheCells.length - 1) + 1
-    target = 25;
+    target = 92;
     target2 = 12;
     displayPlayer();
     displayTarget();
@@ -50,22 +53,23 @@ function startTheGame() {
 
   if (level === 2) {
     clearGrid();
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       createACell2();
     }
-
-    target = 27;
-    target2 = 19;
+    playerPosition = 90;
+    console.log(playerPosition);
+    target = 97;
+    target2 = 16;
     displayPlayer2();
     displayTarget3();
   }
 
   if (level === 3) {
     clearGrid();
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       createACell3();
     }
-
+    playerPosition = 90;
     target = 25;
     target2 = 12;
     displayPlayer3();
@@ -74,10 +78,10 @@ function startTheGame() {
 
   if (level === 4) {
     clearGrid();
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       createACell4(i);
     }
-
+    playerPosition = 90;
     target = 25;
 
     displayPlayer4();
@@ -100,7 +104,7 @@ function displayTarget2() {
 }
 
 function displayExit() {
-  let exit = 2;
+  let exit = 9;
   allTheCells[exit].classList.add("exit"); // add exit class
 }
 
@@ -130,7 +134,7 @@ function move(direction) {
   hidePlayer();
 
   if (direction === "right") {
-    if ((playerPosition + 1) % 10 === 0) {
+    if ((playerPosition + 1) % 15 === 0) {
       return displayPlayer();
     }
     playerPosition += 1;
@@ -151,7 +155,7 @@ function move(direction) {
   }
 
   if (direction === "down") {
-    if (playerPosition >= 90) {
+    if (playerPosition >= 140) {
       return displayPlayer();
     }
     playerPosition += 10;
@@ -168,7 +172,8 @@ function move(direction) {
       const dialogDiv = document.createElement("div");
       dialogDiv.id = "dialog1";
       const dialogText = document.createElement("p");
-      dialogText.textContent = "This is your first challenge adventurer !";
+      dialogText.textContent =
+        "Welcome adventurer ! I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment";
       const button1 = document.createElement("button");
       button1.id = "button1";
       button1.textContent = "I want the sword !!!";
@@ -211,23 +216,42 @@ function move(direction) {
       const dialogDivTwo = document.createElement("div");
       dialogDivTwo.id = "dialog2";
       const dialogTextTwo = document.createElement("p");
-      dialogTextTwo.textContent = "This is your second challenge adventurer !";
+      dialogTextTwo.textContent =
+        "Hello there. I'm a keeper of the dungeon. I'm here to prevent you from a painful death, only if you can solve this riddle... There were 5 children in a room. Iris drew a picture, Barry played video games, Andrew played chess, and Trina read a book. What is the fifth child, Mindy, doing?";
       const button3 = document.createElement("button");
       button3.id = "button3";
-      button3.textContent = "Solution 3";
+      button3.textContent = "Playing with the cat";
       button3.addEventListener("click", () => {
+        choiceTwo = "cat";
         dialogDivTwo.remove();
       });
       const button4 = document.createElement("button");
       button4.id = "button4";
-      button4.textContent = "Solution 4";
+      button4.textContent = "Reading a book";
       button4.addEventListener("click", () => {
+        choiceTwo = "book";
+        dialogDivTwo.remove();
+      });
+      const button3Bis = document.createElement("button");
+      button3Bis.id = "button3Bis";
+      button3Bis.textContent = "Playing chess";
+      button3Bis.addEventListener("click", () => {
+        choiceTwo = "chess";
+        dialogDivTwo.remove();
+      });
+      const button4Bis = document.createElement("button");
+      button4Bis.id = "button4Bis";
+      button4Bis.textContent = "Rolling one for later";
+      button4Bis.addEventListener("click", () => {
+        choiceTwo = "troll";
         dialogDivTwo.remove();
       });
 
       dialogDivTwo.appendChild(dialogTextTwo);
       dialogDivTwo.appendChild(button3);
       dialogDivTwo.appendChild(button4);
+      dialogDivTwo.appendChild(button3Bis);
+      dialogDivTwo.appendChild(button4Bis);
       document.body.appendChild(dialogDivTwo);
     }
 
@@ -249,8 +273,8 @@ function move(direction) {
     }
   } else if (allTheCells[playerPosition].classList.contains("exit")) {
     hidePlayer();
+
     level = 2;
-    playerPosition = 99;
     startTheGame();
   }
 }
@@ -270,7 +294,7 @@ function displayTarget4() {
 }
 
 function displayExit2() {
-  let exit = 2;
+  let exit = 9;
   allTheCells[exit].classList.add("exit"); // add exit class
 }
 
@@ -291,7 +315,7 @@ function move2(direction) {
   hidePlayer2();
 
   if (direction === "right") {
-    if ((playerPosition + 1) % 10 === 0) {
+    if ((playerPosition + 1) % 15 === 0) {
       return displayPlayer2();
     }
     playerPosition += 1;
@@ -312,7 +336,7 @@ function move2(direction) {
   }
 
   if (direction === "down") {
-    if (playerPosition >= 90) {
+    if (playerPosition >= 140) {
       return displayPlayer2();
     }
     playerPosition += 10;
@@ -420,7 +444,7 @@ function displayTarget6() {
 }
 
 function displayExit3() {
-  let exit = 5;
+  let exit = 9;
   allTheCells[exit].classList.add("exit"); // add exit class
 }
 
@@ -441,7 +465,7 @@ function move3(direction) {
   hidePlayer3();
 
   if (direction === "right") {
-    if ((playerPosition + 1) % 10 === 0) {
+    if ((playerPosition + 1) % 15 === 0) {
       return displayPlayer3();
     }
     playerPosition += 1;
@@ -462,7 +486,7 @@ function move3(direction) {
   }
 
   if (direction === "down") {
-    if (playerPosition >= 90) {
+    if (playerPosition >= 140) {
       return displayPlayer3();
     }
     playerPosition += 10;
@@ -550,7 +574,7 @@ function move3(direction) {
   } else if (allTheCells[playerPosition].classList.contains("exit")) {
     hidePlayer();
     level = 4; // LEVEL = 4 une fois level 4 fait
-    playerPosition = 99;
+    playerPosition = 90;
     startTheGame();
   }
 }
@@ -582,44 +606,33 @@ function createACell4(position) {
   allTheCells.push(div);
 }
 
-// function clearGrid() {
-//     // Remove all cells from the grid
-//     while (gridElement.firstChild) {
-//       gridElement.removeChild(gridElement.firstChild);
-//     }
-//     // Clear the allTheCells array
-//     allTheCells.length = 0;
-//   }
-
-// Move function
-
 function move4(direction) {
   hidePlayer();
 
   if (direction === "right") {
-    if ((playerPosition + 1) % 10 === 0) {
-      return displayPlayer4();
+    if ((playerPosition + 1) % 15 === 0) {
+      return displayPlayer();
     }
     playerPosition += 1;
   }
 
   if (direction === "left") {
     if (playerPosition % 10 === 0) {
-      return displayPlayer4();
+      return displayPlayer();
     }
     playerPosition -= 1;
   }
 
   if (direction === "up") {
     if (playerPosition < 10) {
-      return displayPlayer4();
+      return displayPlayer();
     }
     playerPosition -= 10;
   }
 
   if (direction === "down") {
-    if (playerPosition >= 90) {
-      return displayPlayer4();
+    if (playerPosition >= 140) {
+      return displayPlayer();
     }
     playerPosition += 10;
   }
@@ -644,24 +657,26 @@ function move4(direction) {
         let intervalId;
         let currentPosition = -10;
         const divsArray = document.querySelectorAll(".cell");
+
         bossAttack();
 
         function bossAttack() {
           for (let i = 0; i < 10; i++) {
-            const randomNum = Math.random();
-            if (randomNum < 0.2) {
+            const randomNum = Math.floor(Math.random() * 10);
+            if (randomNum < 2) {
               divsArray[i].classList.add("class1");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
-            } else if (randomNum < 0.95) {
+            } else if (randomNum < 9.5) {
               divsArray[i].classList.add("class2");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
-            } else if (randomNum >= 0.95) {
+            } else if (randomNum >= 9.5) {
               divsArray[i].classList.add("class3");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
             }
+            // divsArray[i].classList.add("ennemy");
           }
 
           intervalId = setInterval(() => {
@@ -670,6 +685,7 @@ function move4(direction) {
 
             for (let i = 0; i < class1Divs.length; i++) {
               const currentPosition = parseInt(class1Divs[i].dataset.position);
+
               if (currentPosition < 90) {
                 class1Divs[i].classList.remove("class1");
                 const newPosition = currentPosition + 10;
@@ -696,7 +712,6 @@ function move4(direction) {
                   newPosition
                 );
               } else if (currentPosition >= 90) {
-                console.log("coucou =================");
                 divsArray[currentPosition].classList.remove("class2");
                 clearInterval(intervalId);
               }
@@ -718,6 +733,53 @@ function move4(direction) {
                 divsArray[currentPosition].classList.remove("class3");
               }
             }
+            for (let i = 0; i < divsArray.length; i++) {
+              if (
+                divsArray[i].classList.contains("class2") &&
+                divsArray[i].classList.contains("player")
+              ) {
+                console.log("You lost a life, woups");
+                console.log(playerPosition);
+                // console.log(parseInt(divsArray[i].dataset.position));
+              }
+            }
+
+            document.addEventListener("keydown", function (event) {
+              let life = 0;
+              const cellUp = divsArray[playerPosition],
+                cellDown = divsArray[playerPosition],
+                cellLeft = divsArray[playerPosition - 1],
+                cellRight = divsArray[playerPosition + 1];
+
+              let isLogged = false; // flag variable
+
+              if (
+                event.key === "ArrowUp" &&
+                cellUp.classList.contains("class2")
+              ) {
+                console.log("you went up and lost a life");
+                console.log(divsArray[playerPosition]);
+              }
+              if (
+                cellDown.classList.contains("class2") &&
+                event.key === "ArrowDown"
+              ) {
+                console.log("you went down and lost a life");
+              }
+              if (
+                cellLeft.classList.contains("class2") &&
+                event.key === "ArrowLeft"
+              ) {
+                console.log("you went left and lost a life");
+              }
+              if (
+                cellRight.classList.contains("class2") &&
+                event.key === "ArrowRight"
+              ) {
+                console.log("you went right and lost a life");
+              }
+            });
+
             if (
               !document.querySelector(".class1") &&
               !document.querySelector(".class2") &&
@@ -725,7 +787,7 @@ function move4(direction) {
             ) {
               bossAttack();
             }
-          }, 500);
+          }, 3000);
         }
       });
 
