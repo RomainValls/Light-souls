@@ -313,6 +313,32 @@ h2 {
   border-radius: 5px;
   cursor: pointer;
 }
+#correctSongDiv {
+  border: 2px solid black;
+  position: fixed;
+  background-color: blueviolet;
+  /* top : 60vh;
+    left: 50%; */
+  width: auto;
+  /* transform: translate(-50%, -50%); */
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+}
+#wrongSongDiv {
+  border: 2px solid black;
+  position: fixed;
+  background-color: blueviolet;
+  /* top : 60vh;
+    left: 50%; */
+  width: auto;
+  /* transform: translate(-50%, -50%); */
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+}
 
 #marioButton {
   margin: 10px;

@@ -5,7 +5,7 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 2;
+let level = 1;
 let choice;
 let choiceTwo;
 let choiceSong;
@@ -174,7 +174,7 @@ function move(direction) {
       dialogDiv.id = "dialog1";
       const dialogText = document.createElement("p");
       dialogText.textContent =
-        "Welcome adventurer ! I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment";
+        "Welcome adventurer ! MY name is Eoldurgodrof. I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment. Remember that you will need 5 swords to defeat the dragon. By taking the shoes, you might need to find others swords, but you could dodge dragon's attacks more easily...";
       const button1 = document.createElement("button");
       button1.id = "button1";
       button1.textContent = "I want the sword !!!";
@@ -769,18 +769,65 @@ function move3(direction) {
       dialogDivFive.id = "dialog5";
       const dialogTextFive = document.createElement("p");
       dialogTextFive.textContent =
-        "This is your fifth challenge adventurer ! bakrnfanfnazefnazjnfvlaernvlanevn,arnvazrjnlvanerj";
+        "Hey, you !! I've been stuck here for, I think, a year or two. I could escape by calling the strange guy of the beginning of the dungeon, but in order to call him, I need to remember it's name correctly, can you help ? I'll give you my sword if you give me the right name.";
+
+      let correctNameChoice;
+      let wrongNameChoice;
+
       const button9 = document.createElement("button");
       button9.id = "button9";
-      button9.textContent = "Solution 9";
+      button9.textContent = "I think it was Eoldurgodrof";
+
       button9.addEventListener("click", () => {
+        correctNameChoice = true;
         dialogDivFive.remove();
+
+        if (correctNameChoice) {
+          const correctNameDiv = document.createElement("div");
+          correctNameDiv.id = "correctNameDiv";
+          const correctNameText = document.createElement("p");
+          correctNameText.id = "correctNameText";
+          correctNameText.textContent =
+            "That's it !! Thank you so much, here's my sword.";
+          const correctNameButton = document.createElement("button");
+          correctNameButton.id = "correctNameButton";
+          correctNameButton.textContent = "Sure, thanks!";
+          correctNameButton.onclick = function () {
+            correctNameDiv.remove();
+          };
+
+          correctNameDiv.appendChild(correctNameText);
+          correctNameDiv.appendChild(correctNameButton);
+          document.body.appendChild(correctNameDiv);
+        }
+        return true;
       });
       const button10 = document.createElement("button");
       button10.id = "button10";
-      button10.textContent = "Solution 10";
+      button10.textContent = "It was Ealdorgudruf, for sure";
       button10.addEventListener("click", () => {
+        wrongNameChoice = true;
         dialogDivFive.remove();
+
+        if (wrongNameChoice) {
+          const wrongNameDiv = document.createElement("div");
+          wrongNameDiv.id = "wrongNameDiv";
+          const wrongNameText = document.createElement("p");
+          wrongNameText.id = "wrongNameText";
+          wrongNameText.textContent =
+            "Well, it doesn't seem to be working. If you can't remember, you're not having my sword !!";
+          const wrongNameButton = document.createElement("button");
+          wrongNameButton.id = "wrongNameButton";
+          wrongNameButton.textContent = "Sure, thanks!";
+          wrongNameButton.onclick = function () {
+            wrongNameDiv.remove();
+          };
+
+          wrongNameDiv.appendChild(wrongNameText);
+          wrongNameDiv.appendChild(wrongNameButton);
+          document.body.appendChild(wrongNameDiv);
+        }
+        return true;
       });
 
       dialogDivFive.appendChild(dialogTextFive);
@@ -827,6 +874,7 @@ function move3(direction) {
             // Check if the player has clicked 100 times
             clearInterval(intervalId); // Stop the timer
             alert("You won!");
+            clickerDiv.remove();
           }
         };
         const intervalId = setInterval(() => {
