@@ -5,11 +5,15 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 1;
+let level = 4;
+let swordCounter = 0;
+let shoesCounter = 0;
 let choice;
 let choiceTwo;
 let choiceSong;
 let finalBoss;
+let life = 3;
+
 startButton.addEventListener("click", startTheGame);
 
 // MUSIC PART
@@ -185,7 +189,8 @@ function move(direction) {
           const swordImg = document.createElement("div");
           // swordImg.style.display = "block";
           swordImg.classList.add("sword");
-          userInterface.append(swordImg);
+          const swordContainer = document.getElementById("swordContainer");
+          swordContainer.appendChild(swordImg);
         }
       });
       const button2 = document.createElement("button");
@@ -195,10 +200,13 @@ function move(direction) {
         choice = "shoes";
         dialogDiv.remove();
         if (choice === "shoes") {
+          shoesCounter += 1;
+          console.log(shoesCounter);
           const shoesImg = document.createElement("div");
           // swordImg.style.display = "block";
           shoesImg.classList.add("shoes");
-          userInterface.append(shoesImg);
+          const shoesContainer = document.getElementById("shoesContainer");
+          shoesContainer.append(shoesImg);
         }
       });
 
@@ -312,6 +320,11 @@ function move(direction) {
           goodAnswerButton.textContent =
             "Of course I have what it takes. Give me the sword, chop chop !";
           goodAnswerButton.onclick = function () {
+            const swordImg = document.createElement("div");
+            // swordImg.style.display = "block";
+            swordImg.classList.add("sword");
+            const swordContainer = document.getElementById("swordContainer");
+            swordContainer.appendChild(swordImg);
             goodAnswerDiv.remove();
           };
           goodAnswerDiv.appendChild(goodAnswerText);
@@ -472,6 +485,10 @@ function move2(direction) {
       button6.textContent = "Hmm... Ok ... I guess...";
       button6.addEventListener("click", () => {
         dialogDivThree.remove();
+
+        let container = document.getElementById("swordContainer");
+        let lastDiv = container.lastElementChild;
+        container.removeChild(lastDiv);
       });
 
       dialogDivThree.appendChild(dialogTextThree);
@@ -526,7 +543,7 @@ function move2(direction) {
               "Star Wars, really ? Give me your sword, it can't be hold by an ignorant.";
             const wrongSongButton = document.createElement("button");
             wrongSongButton.id = "wrongSongButton";
-            wrongSongButton.textContent = "WTF ? Wow, ok, here it is.";
+            wrongSongButton.textContent = "WTF ? No, I'm keeping it this time.";
             wrongSongButton.onclick = function () {
               wrongSongDiv.remove();
             };
@@ -577,8 +594,14 @@ function move2(direction) {
               "GG WP !! Wasn't too challenging I see.";
             const correctSongButton = document.createElement("button");
             correctSongButton.id = "correctSongButton";
-            correctSongButton.textContent = "Hehe, easy peasy";
+            correctSongButton.textContent =
+              "Hehe, easy peasy, give me a sword, feeling like slicing stuff today.";
             correctSongButton.onclick = function () {
+              const swordImg = document.createElement("div");
+              // swordImg.style.display = "block";
+              swordImg.classList.add("sword");
+              const swordContainer = document.getElementById("swordContainer");
+              swordContainer.appendChild(swordImg);
               correctSongDiv.remove();
             };
 
@@ -610,7 +633,7 @@ function move2(direction) {
             const wrongSongButton = document.createElement("button");
             wrongSongButton.id = "wrongSongButton";
             wrongSongButton.textContent =
-              "Meh, it still looks quite similar right?";
+              "Meh, it still looks quite similar right? And I'm keeping the sword, you thief !";
             wrongSongButton.onclick = function () {
               wrongSongDiv.remove();
             };
@@ -643,7 +666,7 @@ function move2(direction) {
             const wrongSongButton = document.createElement("button");
             wrongSongButton.id = "wrongSongButton";
             wrongSongButton.textContent =
-              "I was joking, I know it's not Mario... But well, here's the sword.";
+              "I was joking, I know it's not Mario... Anyway, I'm keeping the sword.";
             wrongSongButton.onclick = function () {
               wrongSongDiv.remove();
             };
@@ -793,6 +816,11 @@ function move3(direction) {
           correctNameButton.id = "correctNameButton";
           correctNameButton.textContent = "Sure, thanks!";
           correctNameButton.onclick = function () {
+            const swordImg = document.createElement("div");
+            // swordImg.style.display = "block";
+            swordImg.classList.add("sword");
+            const swordContainer = document.getElementById("swordContainer");
+            swordContainer.appendChild(swordImg);
             correctNameDiv.remove();
           };
 
@@ -903,10 +931,20 @@ function move3(direction) {
                 document.body.appendChild(youLostDiv);
 
                 giveSwordButton.onclick = function () {
+                  let container = document.getElementById("swordContainer");
+                  let lastDiv = container.lastElementChild;
+                  container.removeChild(lastDiv);
+
                   youLostDiv.remove();
+
                   // il faudra que j'enlève l'item de mon player interface et que j'ajoute à un compteur au début de mon js (vitesse, ou nombre d'épées, nombre de bonnes réponses....)
                 };
                 takeMyShoesButton.onclick = function () {
+                  let shoesContainer =
+                    document.getElementById("shoesContainer");
+                  let lastDiv = shoesContainer.lastElementChild;
+                  shoesContainer.removeChild(lastDiv);
+
                   youLostDiv.remove();
                 };
               }
@@ -939,6 +977,8 @@ function move3(direction) {
     }
   } else if (allTheCells[playerPosition].classList.contains("exit")) {
     hidePlayer();
+    const bossSong = document.getElementById("bossSong");
+    bossSong.play();
     level = 4; // LEVEL = 4 une fois level 4 fait
     playerPosition = 90;
     startTheGame();
@@ -954,15 +994,6 @@ function displayPlayer4() {
 function displayTarget7() {
   allTheCells[target].classList.add("finalBoss");
 }
-
-// function displayTarget8() {
-// 	allTheCells[target2].classList.add("targetTwo")    // Je crée une autre classe pour pouvoir display deux messages différents en fonction de qui le joueur rencontre
-// }
-
-// function displayExit() {
-//     let exit = 2;
-// 	allTheCells[exit].classList.add("exit") // add exit class
-// }
 
 function createACell4(position) {
   const div = document.createElement("div");
@@ -1023,10 +1054,169 @@ function move4(direction) {
         let intervalId;
         let currentPosition = -10;
         const divsArray = document.querySelectorAll(".cell");
+        // let swordContainer = document.getElementById("swordContainer");
+        // let shoesContainer = document.getElementById("shoesContainer");
+        let swordDivs = document.getElementsByClassName("sword");
+        let shoesDivs = document.getElementsByClassName("shoes");
 
-        bossAttack();
+        if (shoesDivs.length <= 0) {
+          bossAttack1();
+        }
 
-        function bossAttack() {
+        if (shoesDivs.length >= 1) {
+          bossAttack2();
+        }
+
+        function bossAttack1() {
+          for (let i = 0; i < 10; i++) {
+            const randomNum = Math.floor(Math.random() * 10);
+            if (randomNum < 2) {
+              divsArray[i].classList.add("class1");
+              divsArray[i].setAttribute("data-position", i);
+              currentPosition = i;
+            } else if (randomNum < 9.5) {
+              divsArray[i].classList.add("class2");
+              divsArray[i].setAttribute("data-position", i);
+              currentPosition = i;
+            } else if (randomNum >= 9.5) {
+              divsArray[i].classList.add("class3");
+              divsArray[i].setAttribute("data-position", i);
+              currentPosition = i;
+            }
+          }
+
+          intervalId = setInterval(() => {
+            const class1Divs = document.querySelectorAll(".class1");
+            // let counterAttack = 0
+
+            for (let i = 0; i < class1Divs.length; i++) {
+              const currentPosition = parseInt(class1Divs[i].dataset.position);
+
+              if (currentPosition < 140) {
+                class1Divs[i].classList.remove("class1");
+                const newPosition = currentPosition + 10;
+                divsArray[newPosition].classList.add("class1");
+                divsArray[newPosition].setAttribute(
+                  "data-position",
+                  newPosition
+                );
+              } else if (currentPosition >= 140) {
+                divsArray[currentPosition].classList.remove("class1");
+              }
+            }
+
+            const class2Divs = document.querySelectorAll(".class2");
+
+            for (let i = 0; i < class2Divs.length; i++) {
+              const currentPosition = parseInt(class2Divs[i].dataset.position);
+              if (currentPosition < 140) {
+                class2Divs[i].classList.remove("class2");
+                const newPosition = currentPosition + 10;
+                divsArray[newPosition].classList.add("class2");
+                divsArray[newPosition].setAttribute(
+                  "data-position",
+                  newPosition
+                );
+              } else if (currentPosition >= 140) {
+                divsArray[currentPosition].classList.remove("class2");
+                clearInterval(intervalId);
+              }
+            }
+
+            const class3Divs = document.querySelectorAll(".class3");
+
+            for (let i = 0; i < class3Divs.length; i++) {
+              const currentPosition = parseInt(class3Divs[i].dataset.position);
+              if (currentPosition < 140) {
+                class3Divs[i].classList.remove("class3");
+                const newPosition = currentPosition + 10;
+                divsArray[newPosition].classList.add("class3");
+                divsArray[newPosition].setAttribute(
+                  "data-position",
+                  newPosition
+                );
+              } else if (currentPosition >= 140) {
+                divsArray[currentPosition].classList.remove("class3");
+              }
+            }
+
+            for (let i = 0; i < divsArray.length; i++) {
+              if (
+                divsArray[i].classList.contains("class2") &&
+                divsArray[i].classList.contains("player")
+              ) {
+                console.log("You lost a life, woups");
+                console.log(playerPosition);
+                life -= 1;
+                console.log(life);
+                // console.log(parseInt(divsArray[i].dataset.position));
+              }
+            }
+
+            if (
+              !document.querySelector(".class1") &&
+              !document.querySelector(".class2") &&
+              !document.querySelector(".class3")
+            ) {
+              bossAttack1();
+            }
+          }, 500);
+
+          document.addEventListener("keydown", function (event) {
+            const divsArray = document.querySelectorAll(".cell");
+
+            const cellUp = divsArray[playerPosition],
+              cellDown = divsArray[playerPosition],
+              cellLeft = divsArray[playerPosition - 1],
+              cellRight = divsArray[playerPosition + 1];
+
+            if (
+              event.key === "ArrowUp" &&
+              cellUp.classList.contains("class2")
+            ) {
+              console.log("you went up and lost a life");
+              console.log(divsArray[playerPosition]);
+              life -= 1;
+              console.log(life);
+            } else if (
+              cellDown.classList.contains("class2") &&
+              event.key === "ArrowDown"
+            ) {
+              console.log("you went down and lost a life");
+              life -= 1;
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
+            } else if (
+              cellLeft.classList.contains("class2") &&
+              event.key === "ArrowLeft"
+            ) {
+              console.log("you went left and lost a life");
+              life -= 1;
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
+            } else if (
+              cellRight.classList.contains("class2") &&
+              event.key === "ArrowRight"
+            ) {
+              console.log("you went right and lost a life");
+              life -= 1;
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
+            }
+          });
+        }
+        if (life === 0) {
+          alert("Game over!");
+        }
+        ///////      BOSS ATTACK 2
+
+        function bossAttack2() {
           for (let i = 0; i < 10; i++) {
             const randomNum = Math.floor(Math.random() * 10);
             if (randomNum < 2) {
@@ -1069,7 +1259,7 @@ function move4(direction) {
 
             for (let i = 0; i < class2Divs.length; i++) {
               const currentPosition = parseInt(class2Divs[i].dataset.position);
-              if (currentPosition < 90) {
+              if (currentPosition < 140) {
                 class2Divs[i].classList.remove("class2");
                 const newPosition = currentPosition + 10;
                 divsArray[newPosition].classList.add("class2");
@@ -1077,7 +1267,7 @@ function move4(direction) {
                   "data-position",
                   newPosition
                 );
-              } else if (currentPosition >= 90) {
+              } else if (currentPosition >= 140) {
                 divsArray[currentPosition].classList.remove("class2");
                 clearInterval(intervalId);
               }
@@ -1087,7 +1277,7 @@ function move4(direction) {
 
             for (let i = 0; i < class3Divs.length; i++) {
               const currentPosition = parseInt(class3Divs[i].dataset.position);
-              if (currentPosition < 90) {
+              if (currentPosition < 140) {
                 class3Divs[i].classList.remove("class3");
                 const newPosition = currentPosition + 10;
                 divsArray[newPosition].classList.add("class3");
@@ -1095,10 +1285,11 @@ function move4(direction) {
                   "data-position",
                   newPosition
                 );
-              } else if (currentPosition >= 90) {
+              } else if (currentPosition >= 140) {
                 divsArray[currentPosition].classList.remove("class3");
               }
             }
+
             for (let i = 0; i < divsArray.length; i++) {
               if (
                 divsArray[i].classList.contains("class2") &&
@@ -1106,57 +1297,58 @@ function move4(direction) {
               ) {
                 console.log("You lost a life, woups");
                 console.log(playerPosition);
+                life -= 1;
+                console.log(life);
                 // console.log(parseInt(divsArray[i].dataset.position));
               }
             }
-            let life = 5;
-
-            document.addEventListener("keydown", function (event) {
-              const cellUp = divsArray[playerPosition],
-                cellDown = divsArray[playerPosition],
-                cellLeft = divsArray[playerPosition - 1],
-                cellRight = divsArray[playerPosition + 1];
-
-              if (
-                event.key === "ArrowUp" &&
-                cellUp.classList.contains("class2")
-              ) {
-                console.log("you went up and lost a life");
-                console.log(divsArray[playerPosition]);
-                life--;
-                console.log(life);
-              } else if (
-                cellDown.classList.contains("class2") &&
-                event.key === "ArrowDown"
-              ) {
-                console.log("you went down and lost a life");
-                life--;
-                // console.log(life);
-              } else if (
-                cellLeft.classList.contains("class2") &&
-                event.key === "ArrowLeft"
-              ) {
-                console.log("you went left and lost a life");
-                life--;
-                // console.log(life);
-              } else if (
-                cellRight.classList.contains("class2") &&
-                event.key === "ArrowRight"
-              ) {
-                console.log("you went right and lost a life");
-                life--;
-                // console.log(life);
-              }
-            });
 
             if (
               !document.querySelector(".class1") &&
               !document.querySelector(".class2") &&
               !document.querySelector(".class3")
             ) {
-              bossAttack();
+              bossAttack2();
             }
           }, 2000);
+
+          document.addEventListener("keydown", function (event) {
+            const cellUp = divsArray[playerPosition],
+              cellDown = divsArray[playerPosition],
+              cellLeft = divsArray[playerPosition - 1],
+              cellRight = divsArray[playerPosition + 1];
+
+            if (
+              event.key === "ArrowUp" &&
+              cellUp.classList.contains("class2")
+            ) {
+              console.log("you went up and lost a life");
+              console.log(divsArray[playerPosition]);
+              life -= 1;
+              console.log(life);
+            } else if (
+              cellDown.classList.contains("class2") &&
+              event.key === "ArrowDown"
+            ) {
+              console.log("you went down and lost a life");
+              life -= 1;
+              // console.log(life);
+            } else if (
+              cellLeft.classList.contains("class2") &&
+              event.key === "ArrowLeft"
+            ) {
+              console.log("you went left and lost a life");
+              life -= 1;
+              // console.log(life);
+            } else if (
+              cellRight.classList.contains("class2") &&
+              event.key === "ArrowRight"
+            ) {
+              console.log("you went right and lost a life");
+              life -= 1;
+              // console.log(life);
+            }
+          });
         }
       });
 
@@ -1170,7 +1362,9 @@ function move4(direction) {
     allTheCells[playerPosition].classList.remove("finalBoss");
   }
 }
-
+if (life === 0) {
+  alert("Game over!");
+}
 document.addEventListener("keydown", (event) => {
   if (level === 1) {
     console.log(event.key);

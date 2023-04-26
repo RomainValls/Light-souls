@@ -23,6 +23,11 @@ h2 {
   flex-direction: column;
 }
 
+.swordContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 .class2 {
   background: #fff url("images/CampFireFinished.png") 0 0 / 205px no-repeat;
   animation: sprite-animation 0.4s steps(5) infinite;
