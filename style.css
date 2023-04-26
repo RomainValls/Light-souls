@@ -23,9 +23,13 @@ h2 {
   flex-direction: column;
 }
 
-.swordContainer {
+#swordContainer {
   display: flex;
   flex-direction: row;
+  height: 200px;
+}
+#shoesContainer {
+  height: 120px;
 }
 
 .class2 {
@@ -76,17 +80,18 @@ h2 {
 .sword {
   background-image: url("images/dagger.png");
   background-size: cover;
-  height: 7rem;
-  width: 7rem;
+  height: 11rem;
+  width: 11rem;
 }
 
 .shoes {
   background-image: url("images/37.png");
   background-size: cover;
   background-repeat: no-repeat;
-
-  height: 4rem;
-  width: 4rem;
+  padding: 20px;
+  margin: 3rem;
+  height: 116px;
+  width: 100px;
 }
 
 #start {

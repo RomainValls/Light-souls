@@ -5,7 +5,7 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 4;
+let level = 1;
 let swordDivs = document.getElementsByClassName("sword");
 let choice;
 let choiceTwo;
@@ -199,8 +199,6 @@ function move(direction) {
         choice = "shoes";
         dialogDiv.remove();
         if (choice === "shoes") {
-          shoesCounter += 1;
-          console.log(shoesCounter);
           const shoesImg = document.createElement("div");
           // swordImg.style.display = "block";
           shoesImg.classList.add("shoes");
@@ -1176,7 +1174,7 @@ function move4(direction) {
             ) {
               bossAttack1();
             }
-          }, 500);
+          }, 250);
 
           document.addEventListener("keydown", function (event) {
             const divsArray = document.querySelectorAll(".cell");
@@ -1258,15 +1256,13 @@ function move4(direction) {
               }
             }
           });
-        }
+        } // FIN DE LA FONCTION BOSS ATTAQUE 1
         if (life === 0) {
           alert("Game over!");
         }
         if (swordContainer.children.length === 5) {
           alert("you win");
         }
-
-        ///////      BOSS ATTACK 2
 
         function bossAttack2() {
           for (let i = 0; i < 10; i++) {
@@ -1275,16 +1271,15 @@ function move4(direction) {
               divsArray[i].classList.add("class1");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
-            } else if (randomNum < 9.5) {
+            } else if (randomNum < 8) {
               divsArray[i].classList.add("class2");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
-            } else if (randomNum >= 9.5) {
+            } else if (randomNum >= 8) {
               divsArray[i].classList.add("class3");
               divsArray[i].setAttribute("data-position", i);
               currentPosition = i;
             }
-            // divsArray[i].classList.add("ennemy");
           }
 
           intervalId = setInterval(() => {
@@ -1294,7 +1289,7 @@ function move4(direction) {
             for (let i = 0; i < class1Divs.length; i++) {
               const currentPosition = parseInt(class1Divs[i].dataset.position);
 
-              if (currentPosition < 90) {
+              if (currentPosition < 140) {
                 class1Divs[i].classList.remove("class1");
                 const newPosition = currentPosition + 10;
                 divsArray[newPosition].classList.add("class1");
@@ -1302,7 +1297,7 @@ function move4(direction) {
                   "data-position",
                   newPosition
                 );
-              } else if (currentPosition >= 90) {
+              } else if (currentPosition >= 140) {
                 divsArray[currentPosition].classList.remove("class1");
               }
             }
@@ -1348,8 +1343,25 @@ function move4(direction) {
                 divsArray[i].classList.contains("player")
               ) {
                 console.log("You lost a life, woups");
-                console.log(playerPosition);
+
                 life -= 1;
+                console.log(life);
+                // console.log(parseInt(divsArray[i].dataset.position));
+              }
+            }
+
+            for (let i = 0; i < divsArray.length; i++) {
+              if (
+                divsArray[i].classList.contains("class3") &&
+                divsArray[i].classList.contains("player")
+              ) {
+                console.log("You found a sword");
+                const swordImg = document.createElement("div");
+                swordImg.classList.add("sword");
+                swordContainer.appendChild(swordImg);
+                if (swordContainer.children.length === 5) {
+                  alert("you win");
+                }
                 console.log(life);
                 // console.log(parseInt(divsArray[i].dataset.position));
               }
@@ -1362,9 +1374,11 @@ function move4(direction) {
             ) {
               bossAttack2();
             }
-          }, 2000);
+          }, 250);
 
           document.addEventListener("keydown", function (event) {
+            const divsArray = document.querySelectorAll(".cell");
+
             const cellUp = divsArray[playerPosition],
               cellDown = divsArray[playerPosition],
               cellLeft = divsArray[playerPosition - 1],
@@ -1384,24 +1398,65 @@ function move4(direction) {
             ) {
               console.log("you went down and lost a life");
               life -= 1;
-              // console.log(life);
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
             } else if (
               cellLeft.classList.contains("class2") &&
               event.key === "ArrowLeft"
             ) {
               console.log("you went left and lost a life");
               life -= 1;
-              // console.log(life);
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
             } else if (
               cellRight.classList.contains("class2") &&
               event.key === "ArrowRight"
             ) {
               console.log("you went right and lost a life");
               life -= 1;
-              // console.log(life);
+              console.log(life);
+              if (life === 0) {
+                alert("Game over!");
+              }
+            }
+
+            if (
+              event.key === "ArrowUp" &&
+              cellUp.classList.contains("class3")
+            ) {
+              const swordImg = document.createElement("div");
+              swordImg.classList.add("sword");
+              swordContainer.appendChild(swordImg);
+              if (swordContainer.children.length === 5) {
+                alert("You WIIIN");
+              }
+            } else if (
+              cellLeft.classList.contains("class3") &&
+              event.key === "ArrowLeft"
+            ) {
+              // const swordImg = document.createElement("div");
+              swordImg.classList.add("sword");
+              swordContainer.appendChild(swordImg);
+              if (swordContainer.children.length >= 5) {
+                alert("You WIIIN");
+              }
+            } else if (
+              cellRight.classList.contains("class3") &&
+              event.key === "ArrowRight"
+            ) {
+              // const swordImg = document.createElement("div");
+              swordImg.classList.add("sword");
+              swordContainer.appendChild(swordImg);
+              if (swordContainer.children.length >= 5) {
+                alert("You WIIIN");
+              }
             }
           });
-        }
+        } ///////      BOSS ATTACK 2
       });
 
       dialogDivBoss.appendChild(dialogTextBoss);
