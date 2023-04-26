@@ -244,7 +244,16 @@ function move(direction) {
           wrongAnswerText.id = "wrongAnswerText";
           wrongAnswerText.textContent =
             "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          const wrongAnswerButton = document.createElement("button");
+          wrongAnswerButton.id = "wrongAnswerButton";
+          wrongAnswerButton.textContent =
+            "You're not helping dude... Alright, let's go without your sword, it was ugly anyway.";
+          wrongAnswerButton.onclick = function () {
+            wrongAnswerDiv.remove();
+          };
+
           wrongAnswerDiv.appendChild(wrongAnswerText);
+          wrongAnswerDiv.appendChild(wrongAnswerButton);
           document.body.appendChild(wrongAnswerDiv);
         }
         return false;
@@ -266,7 +275,15 @@ function move(direction) {
           wrongAnswerText.id = "wrongAnswerText";
           wrongAnswerText.textContent =
             "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          const wrongAnswerButton = document.createElement("button");
+          wrongAnswerButton.id = "wrongAnswerButton";
+          wrongAnswerButton.textContent =
+            "You're not helping dude... Alright, let's go without your sword, it was ugly anyway.";
+          wrongAnswerButton.onclick = function () {
+            wrongAnswerDiv.remove();
+          };
           wrongAnswerDiv.appendChild(wrongAnswerText);
+          wrongAnswerDiv.appendChild(wrongAnswerButton);
           document.body.appendChild(wrongAnswerDiv);
         }
 
@@ -289,7 +306,15 @@ function move(direction) {
           goodAnswerText.id = "goodAnswerText";
           goodAnswerText.textContent =
             "That's some fresh brain we have right here, well done. I'm ok giving you my last sword, I think you have what it takes to defeat the dragon.";
+          const goodAnswerButton = document.createElement("button");
+          goodAnswerButton.id = "goodAnswerButton";
+          goodAnswerButton.textContent =
+            "Of course I have what it takes. Give me the sword, chop chop !";
+          goodAnswerButton.onclick = function () {
+            goodAnswerDiv.remove();
+          };
           goodAnswerDiv.appendChild(goodAnswerText);
+          goodAnswerDiv.appendChild(goodAnswerButton);
           document.body.appendChild(goodAnswerDiv);
         }
 
@@ -312,7 +337,15 @@ function move(direction) {
           wrongAnswerText.id = "wrongAnswerText";
           wrongAnswerText.textContent =
             "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          const wrongAnswerButton = document.createElement("button");
+          wrongAnswerButton.id = "wrongAnswerButton";
+          wrongAnswerButton.textContent =
+            "You're not helping dude... Alright, let's go without your sword, it was ugly anyway.";
+          wrongAnswerButton.onclick = function () {
+            wrongAnswerDiv.remove();
+          };
           wrongAnswerDiv.appendChild(wrongAnswerText);
+          wrongAnswerDiv.appendChild(wrongAnswerButton);
           document.body.appendChild(wrongAnswerDiv);
         }
 
