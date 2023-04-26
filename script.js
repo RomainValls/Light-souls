@@ -12,7 +12,6 @@ let choiceTwo;
 let choiceSong;
 let finalBoss;
 let life = 3;
-const swordContainer = document.getElementById("swordContainer");
 
 startButton.addEventListener("click", startTheGame);
 
@@ -1162,7 +1161,9 @@ function move4(direction) {
                 const swordImg = document.createElement("div");
                 swordImg.classList.add("sword");
                 swordContainer.appendChild(swordImg);
-
+                if (swordContainer.children.length === 5) {
+                  alert("you win");
+                }
                 console.log(life);
                 // console.log(parseInt(divsArray[i].dataset.position));
               }
@@ -1239,20 +1240,20 @@ function move4(direction) {
               cellLeft.classList.contains("class3") &&
               event.key === "ArrowLeft"
             ) {
-              const swordImg = document.createElement("div");
+              // const swordImg = document.createElement("div");
               swordImg.classList.add("sword");
               swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length === 5) {
+              if (swordContainer.children.length >= 5) {
                 alert("You WIIIN");
               }
             } else if (
               cellRight.classList.contains("class3") &&
               event.key === "ArrowRight"
             ) {
-              const swordImg = document.createElement("div");
+              // const swordImg = document.createElement("div");
               swordImg.classList.add("sword");
               swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length === 5) {
+              if (swordContainer.children.length >= 5) {
                 alert("You WIIIN");
               }
             }
@@ -1260,6 +1261,9 @@ function move4(direction) {
         }
         if (life === 0) {
           alert("Game over!");
+        }
+        if (swordContainer.children.length === 5) {
+          alert("you win");
         }
 
         ///////      BOSS ATTACK 2
