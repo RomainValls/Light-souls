@@ -42,10 +42,10 @@ function startTheGame() {
       createACell();
     }
 
-    playerPosition = 90;
+    playerPosition = 140;
     // target = Math.floor(Math.random() * allTheCells.length - 1) + 1
     // target2 = Math.floor(Math.random() * allTheCells.length - 1) + 1
-    target = 92;
+    target = 132;
     target2 = 12;
     displayPlayer();
     displayTarget();
@@ -56,7 +56,7 @@ function startTheGame() {
     for (let i = 0; i < 150; i++) {
       createACell2();
     }
-    playerPosition = 90;
+    playerPosition = 140;
     console.log(playerPosition);
     target = 97;
     target2 = 16;
@@ -69,7 +69,7 @@ function startTheGame() {
     for (let i = 0; i < 150; i++) {
       createACell3();
     }
-    playerPosition = 90;
+    playerPosition = 140;
     target = 25;
     target2 = 12;
     displayPlayer3();
@@ -189,10 +189,16 @@ function move(direction) {
       });
       const button2 = document.createElement("button");
       button2.id = "button2";
-      button2.textContent = "I'd rather take the shield.";
+      button2.textContent = "I'd rather take your shoes.";
       button2.addEventListener("click", () => {
-        choice = "shield";
+        choice = "shoes";
         dialogDiv.remove();
+        if (choice === "shoes") {
+          const shoesImg = document.createElement("div");
+          // swordImg.style.display = "block";
+          shoesImg.classList.add("shoes");
+          userInterface.append(shoesImg);
+        }
       });
 
       dialogDiv.appendChild(dialogText);
@@ -218,33 +224,99 @@ function move(direction) {
       const dialogTextTwo = document.createElement("p");
       dialogTextTwo.textContent =
         "Hello there. I'm a keeper of the dungeon. I'm here to prevent you from a painful death, only if you can solve this riddle... There were 5 children in a room. Iris drew a picture, Barry played video games, Andrew played chess, and Trina read a book. What is the fifth child, Mindy, doing?";
+
+      let correctAnswer;
+      let wrongAnswer;
+
       const button3 = document.createElement("button");
       button3.id = "button3";
       button3.textContent = "Playing with the cat";
       button3.addEventListener("click", () => {
         choiceTwo = "cat";
+        wrongAnswer = true;
         dialogDivTwo.remove();
+
+        if (wrongAnswer) {
+          console.log("badAnswer====");
+          const wrongAnswerDiv = document.createElement("div");
+          wrongAnswerDiv.id = "wrongAnswerDiv";
+          const wrongAnswerText = document.createElement("p");
+          wrongAnswerText.id = "wrongAnswerText";
+          wrongAnswerText.textContent =
+            "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          wrongAnswerDiv.appendChild(wrongAnswerText);
+          document.body.appendChild(wrongAnswerDiv);
+        }
+        return false;
       });
+
       const button4 = document.createElement("button");
       button4.id = "button4";
       button4.textContent = "Reading a book";
       button4.addEventListener("click", () => {
         choiceTwo = "book";
+        wrongAnswer = true;
         dialogDivTwo.remove();
+
+        if (wrongAnswer) {
+          console.log("badAnswer====");
+          const wrongAnswerDiv = document.createElement("div");
+          wrongAnswerDiv.id = "wrongAnswerDiv";
+          const wrongAnswerText = document.createElement("p");
+          wrongAnswerText.id = "wrongAnswerText";
+          wrongAnswerText.textContent =
+            "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          wrongAnswerDiv.appendChild(wrongAnswerText);
+          document.body.appendChild(wrongAnswerDiv);
+        }
+
+        return false;
       });
+
       const button3Bis = document.createElement("button");
       button3Bis.id = "button3Bis";
       button3Bis.textContent = "Playing chess";
       button3Bis.addEventListener("click", () => {
         choiceTwo = "chess";
+        correctAnswer = true;
         dialogDivTwo.remove();
+
+        if (correctAnswer) {
+          console.log("goodanswer====");
+          const goodAnswerDiv = document.createElement("div");
+          goodAnswerDiv.id = "goodAnswerDiv";
+          const goodAnswerText = document.createElement("p");
+          goodAnswerText.id = "goodAnswerText";
+          goodAnswerText.textContent =
+            "That's some fresh brain we have right here, well done. I'm ok giving you my last sword, I think you have what it takes to defeat the dragon.";
+          goodAnswerDiv.appendChild(goodAnswerText);
+          document.body.appendChild(goodAnswerDiv);
+        }
+
+        return true;
       });
+
       const button4Bis = document.createElement("button");
       button4Bis.id = "button4Bis";
       button4Bis.textContent = "Rolling one for later";
       button4Bis.addEventListener("click", () => {
         choiceTwo = "troll";
+        wrongAnswer = true;
         dialogDivTwo.remove();
+
+        if (wrongAnswer) {
+          console.log("badAnswer====");
+          const wrongAnswerDiv = document.createElement("div");
+          wrongAnswerDiv.id = "wrongAnswerDiv";
+          const wrongAnswerText = document.createElement("p");
+          wrongAnswerText.id = "wrongAnswerText";
+          wrongAnswerText.textContent =
+            "Really ? So you think Andrew was playing chess all alone ? I'll keep the sword for the next, more capable adventurer...";
+          wrongAnswerDiv.appendChild(wrongAnswerText);
+          document.body.appendChild(wrongAnswerDiv);
+        }
+
+        return false;
       });
 
       dialogDivTwo.appendChild(dialogTextTwo);
@@ -535,22 +607,75 @@ function move3(direction) {
       const dialogDivSix = document.createElement("div");
       dialogDivSix.id = "dialog6";
       const dialogTextSix = document.createElement("p");
-      dialogTextSix.textContent = "This is your sixth challenge adventurer !";
-      const button11 = document.createElement("button");
-      button11.id = "button11";
-      button11.textContent = "Solution 11";
-      button11.addEventListener("click", () => {
-        dialogDivSix.remove();
-      });
+      dialogTextSix.textContent =
+        "The door has long been closed... You'll need to go crazy and hit it many times for it to break. GO !";
+
       const button12 = document.createElement("button");
       button12.id = "button12";
-      button12.textContent = "Solution 12";
+      button12.textContent = "Hmmm...okkk";
       button12.addEventListener("click", () => {
         dialogDivSix.remove();
+        const clickerDiv = document.createElement("div");
+        clickerDiv.classList.add("clicker");
+        const dialogClicker = document.createElement("h3");
+        dialogClicker.textContent = "Press me !!!";
+        const clickerButton = document.createElement("button");
+        clickerButton.id = "clickme";
+        clickerDiv.appendChild(dialogClicker);
+        clickerDiv.appendChild(clickerButton);
+        document.body.appendChild(clickerDiv);
+
+        let count = 0;
+        let timer = 10;
+        clickerButton.onclick = function () {
+          count += 1;
+          clickerButton.innerHTML = "Click me: " + count;
+          if (count >= 65) {
+            // Check if the player has clicked 100 times
+            clearInterval(intervalId); // Stop the timer
+            alert("You won!");
+          }
+        };
+        const intervalId = setInterval(() => {
+          timer--;
+          if (timer <= 0) {
+            clearInterval(intervalId);
+
+            if (count < 65) {
+              clickerDiv.remove();
+
+              function youLost() {
+                const youLostDiv = document.createElement("div");
+                youLostDiv.id = "youLostDiv";
+                const giveSwordButton = document.createElement("button");
+                giveSwordButton.id = "giveSwordButton";
+                const takeMyShoesButton = document.createElement("button");
+                takeMyShoesButton.id = "takeMyShoes";
+                const lostText = document.createElement("h3");
+                lostText.id = "lostText";
+                lostText.textContent =
+                  "The gate didn't break... I can help you :D if you give me one of your equipment in return.>:c";
+
+                youLostDiv.appendChild(lostText);
+                youLostDiv.appendChild(giveSwordButton);
+                youLostDiv.appendChild(takeMyShoesButton);
+                document.body.appendChild(youLostDiv);
+
+                giveSwordButton.onclick = function () {
+                  youLostDiv.remove();
+                  // il faudra que j'enlève l'item de mon player interface et que j'ajoute à un compteur au début de mon js (vitesse, ou nombre d'épées, nombre de bonnes réponses....)
+                };
+                takeMyShoesButton.onclick = function () {
+                  youLostDiv.remove();
+                };
+              }
+              youLost();
+            }
+          }
+        }, 1000);
       });
 
       dialogDivSix.appendChild(dialogTextSix);
-      dialogDivSix.appendChild(button11);
       dialogDivSix.appendChild(button12);
       document.body.appendChild(dialogDivSix);
     }
@@ -569,7 +694,7 @@ function move3(direction) {
       )
     ) {
       // both targets have been removed, display exit
-      displayExit3();
+      displayExit3(); // à mettre dans l'event listener du bouton clicker
     }
   } else if (allTheCells[playerPosition].classList.contains("exit")) {
     hidePlayer();
@@ -743,15 +868,13 @@ function move4(direction) {
                 // console.log(parseInt(divsArray[i].dataset.position));
               }
             }
+            let life = 5;
 
             document.addEventListener("keydown", function (event) {
-              let life = 0;
               const cellUp = divsArray[playerPosition],
                 cellDown = divsArray[playerPosition],
                 cellLeft = divsArray[playerPosition - 1],
                 cellRight = divsArray[playerPosition + 1];
-
-              let isLogged = false; // flag variable
 
               if (
                 event.key === "ArrowUp" &&
@@ -759,24 +882,29 @@ function move4(direction) {
               ) {
                 console.log("you went up and lost a life");
                 console.log(divsArray[playerPosition]);
-              }
-              if (
+                life--;
+                console.log(life);
+              } else if (
                 cellDown.classList.contains("class2") &&
                 event.key === "ArrowDown"
               ) {
                 console.log("you went down and lost a life");
-              }
-              if (
+                life--;
+                // console.log(life);
+              } else if (
                 cellLeft.classList.contains("class2") &&
                 event.key === "ArrowLeft"
               ) {
                 console.log("you went left and lost a life");
-              }
-              if (
+                life--;
+                // console.log(life);
+              } else if (
                 cellRight.classList.contains("class2") &&
                 event.key === "ArrowRight"
               ) {
                 console.log("you went right and lost a life");
+                life--;
+                // console.log(life);
               }
             });
 
@@ -787,7 +915,7 @@ function move4(direction) {
             ) {
               bossAttack();
             }
-          }, 3000);
+          }, 2000);
         }
       });
 
