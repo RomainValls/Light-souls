@@ -5,9 +5,10 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 1;
+let level = 2;
 let choice;
 let choiceTwo;
+let choiceSong;
 let finalBoss;
 startButton.addEventListener("click", startTheGame);
 
@@ -459,16 +460,16 @@ function move2(direction) {
       dialogDivThree.id = "dialog3";
       const dialogTextThree = document.createElement("p");
       dialogTextThree.textContent =
-        "This is your first challenge adventurer ! bakrnfanfnazefnazjnfvlaernvlanevn,arnvazrjnlvanerj";
+        "OMG ! Are you also an adventurer ? I once tried to achieve this quest, but unfortunately I lost my equipment... Could you give me one of your sword, so that I can escape ?";
       const button5 = document.createElement("button");
       button5.id = "button5";
-      button5.textContent = "Solution 5";
+      button5.textContent = "No way dude";
       button5.addEventListener("click", () => {
         dialogDivThree.remove();
       });
       const button6 = document.createElement("button");
       button6.id = "button6";
-      button6.textContent = "Solution 6";
+      button6.textContent = "Hmm... Ok ... I guess...";
       button6.addEventListener("click", () => {
         dialogDivThree.remove();
       });
@@ -490,23 +491,182 @@ function move2(direction) {
       const dialogDivFour = document.createElement("div");
       dialogDivFour.id = "dialog4";
       const dialogTextFour = document.createElement("p");
-      dialogTextFour.textContent = "This is your second challenge adventurer !";
+      dialogTextFour.textContent =
+        "I'm the second keeper of the dungeon. You see, in order to defeat the dragon, I think a certain knowledge is necessary. If you know from where the next song is, I'll let you in.";
+
       const button7 = document.createElement("button7");
       button7.id = "button7";
-      button7.textContent = "Solution 7";
+      button7.textContent = "Alright, I'm ready !";
+
+      let correctSong;
+      let wrongSong;
+
       button7.addEventListener("click", () => {
         dialogDivFour.remove();
-      });
-      const button8 = document.createElement("button");
-      button8.id = "button8";
-      button8.textContent = "Solution 8";
-      button8.addEventListener("click", () => {
-        dialogDivFour.remove();
+
+        const answerMusicDiv = document.createElement("div");
+        answerMusicDiv.id = "answerMusicDiv";
+
+        const starWarsButton = document.createElement("button");
+        starWarsButton.id = "starWarsButton";
+        starWarsButton.textContent = "It's from Star Wars, for sure.";
+        starWarsButton.addEventListener("click", () => {
+          choiceSong = "starWars";
+          wrongSong = true;
+          answerMusicDiv.remove();
+          quizzSong.pause();
+
+          if (wrongSong) {
+            console.log("badSong====");
+            const wrongSongDiv = document.createElement("div");
+            wrongSongDiv.id = "wrongSongDiv";
+            const wrongSongText = document.createElement("p");
+            wrongSongText.id = "wrongSongText";
+            wrongSongText.textContent =
+              "Star Wars, really ? Give me your sword, it can't be hold by an ignorant.";
+            const wrongSongButton = document.createElement("button");
+            wrongSongButton.id = "wrongSongButton";
+            wrongSongButton.textContent = "WTF ? Wow, ok, here it is.";
+            wrongSongButton.onclick = function () {
+              wrongSongDiv.remove();
+            };
+
+            wrongSongDiv.appendChild(wrongSongText);
+            wrongSongDiv.appendChild(wrongSongButton);
+            document.body.appendChild(wrongSongDiv);
+          }
+
+          return false;
+        });
+
+        const zeldaButton = document.createElement("button");
+        zeldaButton.id = "zeldaButton";
+        zeldaButton.textContent = "This song is from Zelda, I'm not a noob.";
+        zeldaButton.addEventListener("click", () => {
+          choiceSong = "zelda";
+          correctSong = true;
+          answerMusicDiv.remove();
+          quizzSong.pause();
+
+          if (wrongSong) {
+            console.log("badSong====");
+            const wrongSongDiv = document.createElement("div");
+            wrongSongDiv.id = "wrongSongDiv";
+            const wrongSongText = document.createElement("p");
+            wrongSongText.id = "wrongSongText";
+            wrongSongText.textContent = "that wasn't the right song";
+            const wrongSongButton = document.createElement("button");
+            wrongSongButton.id = "wrongSongButton";
+            wrongSongButton.textContent = "Meh, it looked like it.";
+            wrongSongButton.onclick = function () {
+              wrongSongDiv.remove();
+            };
+
+            wrongSongDiv.appendChild(wrongSongText);
+            wrongSongDiv.appendChild(wrongSongButton);
+            document.body.appendChild(wrongSongDiv);
+          }
+
+          if (correctSong) {
+            console.log("badSong====");
+            const correctSongDiv = document.createElement("div");
+            correctSongDiv.id = "correctSongDiv";
+            const correctSongText = document.createElement("p");
+            correctSongText.id = "correctSongText";
+            correctSongText.textContent =
+              "GG WP !! Wasn't too challenging I see.";
+            const correctSongButton = document.createElement("button");
+            correctSongButton.id = "correctSongButton";
+            correctSongButton.textContent = "Hehe, easy peasy";
+            correctSongButton.onclick = function () {
+              correctSongDiv.remove();
+            };
+
+            correctSongDiv.appendChild(correctSongText);
+            correctSongDiv.appendChild(correctSongButton);
+            document.body.appendChild(correctSongDiv);
+          }
+          return true;
+        });
+
+        const pokemonButton = document.createElement("button");
+        pokemonButton.id = "pokemonButton";
+        pokemonButton.textContent = "It might be from Pokemon ..?";
+
+        pokemonButton.addEventListener("click", () => {
+          choiceSong = "pokemon";
+          wrongSong = true;
+          answerMusicDiv.remove();
+          quizzSong.pause();
+
+          if (wrongSong) {
+            console.log("badSong====");
+            const wrongSongDiv = document.createElement("div");
+            wrongSongDiv.id = "wrongSongDiv";
+            const wrongSongText = document.createElement("p");
+            wrongSongText.id = "wrongSongText";
+            wrongSongText.textContent =
+              "Pokemon, really ? Give me your sword, it can't be hold by an ignorant.";
+            const wrongSongButton = document.createElement("button");
+            wrongSongButton.id = "wrongSongButton";
+            wrongSongButton.textContent =
+              "Meh, it still looks quite similar right?";
+            wrongSongButton.onclick = function () {
+              wrongSongDiv.remove();
+            };
+
+            wrongSongDiv.appendChild(wrongSongText);
+            wrongSongDiv.appendChild(wrongSongButton);
+            document.body.appendChild(wrongSongDiv);
+          }
+
+          return false;
+        });
+
+        const marioButton = document.createElement("button");
+        marioButton.id = "marioButton";
+        marioButton.textContent = "Definitely from the plumber game.";
+        marioButton.addEventListener("click", () => {
+          choiceSong = "mario";
+          wrongSong = true;
+          answerMusicDiv.remove();
+          quizzSong.pause();
+
+          if (wrongSong) {
+            console.log("badSong====");
+            const wrongSongDiv = document.createElement("div");
+            wrongSongDiv.id = "wrongSongDiv";
+            const wrongSongText = document.createElement("p");
+            wrongSongText.id = "wrongSongText";
+            wrongSongText.textContent =
+              "Mario, really ? Give me your sword, it can't be hold by an ignorant.";
+            const wrongSongButton = document.createElement("button");
+            wrongSongButton.id = "wrongSongButton";
+            wrongSongButton.textContent =
+              "I was joking, I know it's not Mario... But well, here's the sword.";
+            wrongSongButton.onclick = function () {
+              wrongSongDiv.remove();
+            };
+
+            wrongSongDiv.appendChild(wrongSongText);
+            wrongSongDiv.appendChild(wrongSongButton);
+            document.body.appendChild(wrongSongDiv);
+          }
+
+          return false;
+        });
+        answerMusicDiv.appendChild(starWarsButton);
+        answerMusicDiv.appendChild(zeldaButton);
+        answerMusicDiv.appendChild(pokemonButton);
+        answerMusicDiv.appendChild(marioButton);
+        document.body.appendChild(answerMusicDiv);
+
+        const quizzSong = document.getElementById("quizzSong");
+        quizzSong.play();
       });
 
       dialogDivFour.appendChild(dialogTextFour);
       dialogDivFour.appendChild(button7);
-      dialogDivFour.appendChild(button8);
       document.body.appendChild(dialogDivFour);
     }
 
