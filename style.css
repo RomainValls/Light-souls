@@ -195,6 +195,30 @@ h2 {
   padding: 10px;
 }
 
+#startBossFightDiv {
+  border: 2px solid black;
+  position: fixed;
+  background-color: blueviolet;
+  /* top : 60vh;
+    left: 50%; */
+  width: auto;
+  /* transform: translate(-50%, -50%); */
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+}
+
+#startBossFightButton {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 #dialogBoss {
   border: 2px solid black;
   position: fixed;
@@ -290,7 +314,10 @@ h2 {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: darkslategray;
+  background-image: url(/images/37.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: brown;
   border-radius: 5px;
   cursor: pointer;
   width: 150px;

@@ -7,6 +7,8 @@ let target;
 let target2;
 let level = 1;
 let swordDivs = document.getElementsByClassName("sword");
+let shoesContainer = document.getElementById("shoesContainer");
+const swordContainer = document.getElementById("swordContainer");
 let choice;
 let choiceTwo;
 let choiceSong;
@@ -85,8 +87,8 @@ function startTheGame() {
     for (let i = 0; i < 150; i++) {
       createACell4(i);
     }
-    playerPosition = 90;
-    target = 25;
+
+    target = 147;
 
     displayPlayer4();
     displayTarget7();
@@ -177,7 +179,7 @@ function move(direction) {
       dialogDiv.id = "dialog1";
       const dialogText = document.createElement("p");
       dialogText.textContent =
-        "Welcome adventurer ! MY name is Eoldurgodrof. I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment. Remember that you will need 5 swords to defeat the dragon. By taking the shoes, you might need to find others swords, but you could dodge dragon's attacks more easily...";
+        "Welcome adventurer ! MY name is Eoldurgodrof. I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment. Remember that you will need 15 swords to defeat the dragon. By taking the shoes, you might need to find others swords, but you could dodge dragon's attacks more easily...";
       const button1 = document.createElement("button");
       button1.id = "button1";
       button1.textContent = "I want the sword !!!";
@@ -476,6 +478,30 @@ function move2(direction) {
       button5.textContent = "No way dude";
       button5.addEventListener("click", () => {
         dialogDivThree.remove();
+        const stealAll = document.createElement("div");
+        stealAll.id = "stealAll";
+        const stealAllText = document.createElement("p");
+        stealAllText.id = "stealAllText";
+        stealAllText.textContent =
+          "Really ? I have no other choice than stealing all your equipment then.";
+        const stealAllButton = document.createElement("button");
+        stealAllButton.id = "stealAllButton";
+        stealAllButton.textContent = "What a scam...";
+        stealAll.appendChild(stealAllText);
+        stealAll.appendChild(stealAllButton);
+        document.body.appendChild(stealAll);
+
+        stealAllButton.onclick = function () {
+          stealAll.remove();
+          const swordContainer = document.getElementById("swordContainer");
+          const shoesContainer = document.getElementById("shoesContainer");
+          while (swordContainer.firstChild) {
+            swordContainer.removeChild(swordContainer.lastChild);
+          }
+          while (shoesContainer.firstChild) {
+            shoesContainer.removeChild(shoesContainer.lastChild);
+          }
+        };
       });
       const button6 = document.createElement("button");
       button6.id = "button6";
@@ -483,9 +509,31 @@ function move2(direction) {
       button6.addEventListener("click", () => {
         dialogDivThree.remove();
 
-        let container = document.getElementById("swordContainer");
-        let lastDiv = container.lastElementChild;
-        container.removeChild(lastDiv);
+        const getTwoSwords = document.createElement("div");
+        getTwoSwords.id = "getTwoSwords";
+        const getTwoSwordsText = document.createElement("p");
+        getTwoSwordsText.id = "getTwoSwordsText";
+        getTwoSwordsText.textContent =
+          "Hmmm... You passed my test ! You have a good heart. Won't help you against the dragon tho. But here's two swords that might help a little ";
+        const getTwoSwordsButton = document.createElement("button");
+        getTwoSwordsButton.id = "getTwoSwordsButton";
+        getTwoSwordsButton.textContent =
+          "Couldn't you just give me those swords directly ? I'm doing the dirty job dude.";
+        getTwoSwords.appendChild(getTwoSwordsText);
+        getTwoSwords.appendChild(getTwoSwordsButton);
+        document.body.appendChild(getTwoSwords);
+
+        getTwoSwordsButton.onclick = function () {
+          getTwoSwords.remove();
+          const swordImg = document.createElement("div");
+          const swordImg2 = document.createElement("div");
+          // swordImg.style.display = "block";
+          swordImg.classList.add("sword");
+          swordImg2.classList.add("sword");
+          const swordContainer = document.getElementById("swordContainer");
+          swordContainer.appendChild(swordImg);
+          swordContainer.appendChild(swordImg2);
+        };
       });
 
       dialogDivThree.appendChild(dialogTextThree);
@@ -829,7 +877,7 @@ function move3(direction) {
       });
       const button10 = document.createElement("button");
       button10.id = "button10";
-      button10.textContent = "It was Ealdorgudruf, for sure";
+      button10.textContent = "It was Eoldorgodruf, for sure";
       button10.addEventListener("click", () => {
         wrongNameChoice = true;
         dialogDivFive.remove();
@@ -840,7 +888,7 @@ function move3(direction) {
           const wrongNameText = document.createElement("p");
           wrongNameText.id = "wrongNameText";
           wrongNameText.textContent =
-            "Well, it doesn't seem to be working. If you can't remember, you're not having my sword !!";
+            "Well, it doesn't seem to be working. If you can't remember, you're not having my sword, eh !!";
           const wrongNameButton = document.createElement("button");
           wrongNameButton.id = "wrongNameButton";
           wrongNameButton.textContent = "Sure, thanks!";
@@ -915,8 +963,7 @@ function move3(direction) {
                 youLostDiv.id = "youLostDiv";
                 const giveSwordButton = document.createElement("button");
                 giveSwordButton.id = "giveSwordButton";
-                const takeMyShoesButton = document.createElement("button");
-                takeMyShoesButton.id = "takeMyShoes";
+
                 const lostText = document.createElement("h3");
                 lostText.id = "lostText";
                 lostText.textContent =
@@ -924,22 +971,12 @@ function move3(direction) {
 
                 youLostDiv.appendChild(lostText);
                 youLostDiv.appendChild(giveSwordButton);
-                youLostDiv.appendChild(takeMyShoesButton);
+
                 document.body.appendChild(youLostDiv);
 
                 giveSwordButton.onclick = function () {
                   let lastDiv = swordContainer.lastElementChild;
                   swordContainer.removeChild(lastDiv);
-
-                  youLostDiv.remove();
-
-                  // il faudra que j'enlève l'item de mon player interface et que j'ajoute à un compteur au début de mon js (vitesse, ou nombre d'épées, nombre de bonnes réponses....)
-                };
-                takeMyShoesButton.onclick = function () {
-                  let shoesContainer =
-                    document.getElementById("shoesContainer");
-                  let lastDiv = shoesContainer.lastElementChild;
-                  shoesContainer.removeChild(lastDiv);
 
                   youLostDiv.remove();
                 };
@@ -976,7 +1013,7 @@ function move3(direction) {
     const bossSong = document.getElementById("bossSong");
     bossSong.play();
     level = 4; // LEVEL = 4 une fois level 4 fait
-    playerPosition = 90;
+    playerPosition = 145;
     startTheGame();
   }
 }
@@ -1004,28 +1041,28 @@ function move4(direction) {
 
   if (direction === "right") {
     if ((playerPosition + 1) % 15 === 0) {
-      return displayPlayer();
+      return displayPlayer4();
     }
     playerPosition += 1;
   }
 
   if (direction === "left") {
     if (playerPosition % 10 === 0) {
-      return displayPlayer();
+      return displayPlayer4();
     }
     playerPosition -= 1;
   }
 
   if (direction === "up") {
     if (playerPosition < 10) {
-      return displayPlayer();
+      return displayPlayer4();
     }
     playerPosition -= 10;
   }
 
   if (direction === "down") {
     if (playerPosition >= 140) {
-      return displayPlayer();
+      return displayPlayer4();
     }
     playerPosition += 10;
   }
@@ -1033,436 +1070,480 @@ function move4(direction) {
   displayPlayer4();
 
   if (allTheCells[playerPosition].classList.contains("finalBoss")) {
-    //je veux que les pnj soient des objets colision.
+    // startBossFightButton.addEventListener("click", createDialog());
 
     function createDialog() {
-      const dialogDivBoss = document.createElement("div");
-      dialogDivBoss.id = "dialogBoss";
-      const dialogTextBoss = document.createElement("p");
-      dialogTextBoss.textContent =
-        "I'm going to burn you down little insect !!!";
-      const buttonBoss = document.createElement("button");
-      buttonBoss.id = "buttonBoss";
-      buttonBoss.textContent = "Let's fight !!";
+      const startBossFightDiv = document.createElement("div");
+      startBossFightDiv.id = "startBossFightDiv";
+      const startBossFightText = document.createElement("p");
+      startBossFightText.id = "startBossFightText";
+      startBossFightText.textContent =
+        "So, you're finally here. Almost felt asleep. Don't try to escape, it's pointless. You'll get burn, and after the third burn, you'll just die in excruciating pain.";
+      const startBossFightButton = document.createElement("button");
+      startBossFightButton.id = "startBossFightButton";
+      startBossFightButton.textContent =
+        "I'm not afraid of you. Plus, you smell like barbecue.";
 
-      buttonBoss.addEventListener("click", () => {
-        dialogDivBoss.remove();
-        let intervalId;
-        let currentPosition = -10;
-        const divsArray = document.querySelectorAll(".cell");
-        // let swordContainer = document.getElementById("swordContainer");
-        // let shoesContainer = document.getElementById("shoesContainer");
+      startBossFightDiv.appendChild(startBossFightText);
+      startBossFightDiv.appendChild(startBossFightButton);
+      document.body.appendChild(startBossFightDiv);
 
-        let shoesDivs = document.getElementsByClassName("shoes");
-        console.log(swordDivs.length);
+      startBossFightButton.onclick = function () {
+        startBossFightDiv.remove();
+        const dialogDivBoss = document.createElement("div");
+        dialogDivBoss.id = "dialogBoss";
+        const dialogTextBoss = document.createElement("p");
+        dialogTextBoss.textContent =
+          "I'm going to burn you down little insect !!!";
+        const buttonBoss = document.createElement("button");
+        buttonBoss.id = "buttonBoss";
+        buttonBoss.textContent = "Let's fight !!";
 
-        if (shoesDivs.length <= 0) {
-          bossAttack1();
-        }
+        dialogDivBoss.appendChild(dialogTextBoss);
+        dialogDivBoss.appendChild(buttonBoss);
 
-        if (shoesDivs.length >= 1) {
-          bossAttack2();
-        }
+        document.body.appendChild(dialogDivBoss);
 
-        function bossAttack1() {
-          for (let i = 0; i < 10; i++) {
-            const randomNum = Math.floor(Math.random() * 10);
-            if (randomNum < 2) {
-              divsArray[i].classList.add("class1");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
-            } else if (randomNum < 8) {
-              divsArray[i].classList.add("class2");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
-            } else if (randomNum >= 8) {
-              divsArray[i].classList.add("class3");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
+        buttonBoss.addEventListener("click", () => {
+          dialogDivBoss.remove();
+          let intervalId;
+          let currentPosition = -10;
+
+          const divsArray = document.querySelectorAll(".cell");
+          // let swordContainer = document.getElementById("swordContainer");
+          // let shoesContainer = document.getElementById("shoesContainer");
+
+          let shoesDivs = document.getElementsByClassName("shoes");
+          console.log(swordDivs.length);
+
+          if (shoesDivs.length <= 0) {
+            bossAttack1();
+          }
+
+          if (shoesDivs.length >= 1) {
+            bossAttack2();
+          }
+          // BOSS ATTACK 1
+
+          function bossAttack1() {
+            for (let i = 0; i < 10; i++) {
+              const randomNum = Math.floor(Math.random() * 10);
+              if (randomNum < 2) {
+                divsArray[i].classList.add("class1");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              } else if (randomNum < 8) {
+                divsArray[i].classList.add("class2");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              } else if (randomNum >= 8) {
+                divsArray[i].classList.add("class3");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              }
+            }
+
+            intervalId = setInterval(() => {
+              const class1Divs = document.querySelectorAll(".class1");
+              // let counterAttack = 0
+
+              for (let i = 0; i < class1Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class1Divs[i].dataset.position
+                );
+
+                if (currentPosition < 140) {
+                  class1Divs[i].classList.remove("class1");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class1");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class1");
+                }
+              }
+
+              const class2Divs = document.querySelectorAll(".class2");
+
+              for (let i = 0; i < class2Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class2Divs[i].dataset.position
+                );
+                if (currentPosition < 140) {
+                  class2Divs[i].classList.remove("class2");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class2");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class2");
+                  clearInterval(intervalId);
+                }
+              }
+
+              const class3Divs = document.querySelectorAll(".class3");
+
+              for (let i = 0; i < class3Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class3Divs[i].dataset.position
+                );
+                if (currentPosition < 140) {
+                  class3Divs[i].classList.remove("class3");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class3");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class3");
+                }
+              }
+
+              for (let i = 0; i < divsArray.length; i++) {
+                if (
+                  divsArray[i].classList.contains("class2") &&
+                  divsArray[i].classList.contains("player")
+                ) {
+                  console.log("You lost a life, woups");
+
+                  life -= 1;
+                  console.log(life);
+                  // console.log(parseInt(divsArray[i].dataset.position));
+                }
+              }
+
+              for (let i = 0; i < divsArray.length; i++) {
+                if (
+                  divsArray[i].classList.contains("class3") &&
+                  divsArray[i].classList.contains("player")
+                ) {
+                  console.log("You found a sword");
+                  const swordImg = document.createElement("div");
+                  swordImg.classList.add("sword");
+                  swordContainer.appendChild(swordImg);
+                  if (swordContainer.children.length === 15) {
+                    alert("you win");
+                  }
+                  console.log(life);
+                  // console.log(parseInt(divsArray[i].dataset.position));
+                }
+              }
+
+              if (
+                !document.querySelector(".class1") &&
+                !document.querySelector(".class2") &&
+                !document.querySelector(".class3")
+              ) {
+                bossAttack1();
+              }
+            }, 75);
+
+            // document.addEventListener("keydown", function (event) {
+            //   const divsArray = document.querySelectorAll(".cell");
+
+            //   const cellUp = divsArray[playerPosition],
+            //     cellDown = divsArray[playerPosition],
+            //     cellLeft = divsArray[playerPosition - 1],
+            //     cellRight = divsArray[playerPosition + 1];
+
+            //   if (
+            //     event.key === "ArrowUp" &&
+            //     cellUp.classList.contains("class2")
+            //   ) {
+            //     console.log("you went up and lost a life");
+            //     console.log(divsArray[playerPosition]);
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellDown.classList.contains("class2") &&
+            //     event.key === "ArrowDown"
+            //   ) {
+            //     console.log("you went down and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellLeft.classList.contains("class2") &&
+            //     event.key === "ArrowLeft"
+            //   ) {
+            //     console.log("you went left and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellRight.classList.contains("class2") &&
+            //     event.key === "ArrowRight"
+            //   ) {
+            //     console.log("you went right and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   }
+
+            //   if (
+            //     event.key === "ArrowUp" &&
+            //     cellUp.classList.contains("class3")
+            //   ) {
+            //     const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length === 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   } else if (
+            //     cellLeft.classList.contains("class3") &&
+            //     event.key === "ArrowLeft"
+            //   ) {
+            //     // const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length >= 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   } else if (
+            //     cellRight.classList.contains("class3") &&
+            //     event.key === "ArrowRight"
+            //   ) {
+            //     // const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length >= 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   }
+            // });
+            if (swordContainer.children.length === 15) {
+              alert("you win");
+            }
+            if (life === 0) {
+              alert("Game over!");
             }
           }
 
-          intervalId = setInterval(() => {
-            const class1Divs = document.querySelectorAll(".class1");
-            // let counterAttack = 0
+          function bossAttack2() {
+            for (let i = 0; i < 10; i++) {
+              const randomNum = Math.floor(Math.random() * 10);
+              if (randomNum < 2) {
+                divsArray[i].classList.add("class1");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              } else if (randomNum < 8) {
+                divsArray[i].classList.add("class2");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              } else if (randomNum >= 8) {
+                divsArray[i].classList.add("class3");
+                divsArray[i].setAttribute("data-position", i);
+                currentPosition = i;
+              }
+            }
 
-            for (let i = 0; i < class1Divs.length; i++) {
-              const currentPosition = parseInt(class1Divs[i].dataset.position);
+            intervalId = setInterval(() => {
+              const class1Divs = document.querySelectorAll(".class1");
+              // let counterAttack = 0
 
-              if (currentPosition < 140) {
-                class1Divs[i].classList.remove("class1");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class1");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
+              for (let i = 0; i < class1Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class1Divs[i].dataset.position
                 );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class1");
-              }
-            }
 
-            const class2Divs = document.querySelectorAll(".class2");
-
-            for (let i = 0; i < class2Divs.length; i++) {
-              const currentPosition = parseInt(class2Divs[i].dataset.position);
-              if (currentPosition < 140) {
-                class2Divs[i].classList.remove("class2");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class2");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
-                );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class2");
-                clearInterval(intervalId);
-              }
-            }
-
-            const class3Divs = document.querySelectorAll(".class3");
-
-            for (let i = 0; i < class3Divs.length; i++) {
-              const currentPosition = parseInt(class3Divs[i].dataset.position);
-              if (currentPosition < 140) {
-                class3Divs[i].classList.remove("class3");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class3");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
-                );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class3");
-              }
-            }
-
-            for (let i = 0; i < divsArray.length; i++) {
-              if (
-                divsArray[i].classList.contains("class2") &&
-                divsArray[i].classList.contains("player")
-              ) {
-                console.log("You lost a life, woups");
-
-                life -= 1;
-                console.log(life);
-                // console.log(parseInt(divsArray[i].dataset.position));
-              }
-            }
-
-            for (let i = 0; i < divsArray.length; i++) {
-              if (
-                divsArray[i].classList.contains("class3") &&
-                divsArray[i].classList.contains("player")
-              ) {
-                console.log("You found a sword");
-                const swordImg = document.createElement("div");
-                swordImg.classList.add("sword");
-                swordContainer.appendChild(swordImg);
-                if (swordContainer.children.length === 5) {
-                  alert("you win");
+                if (currentPosition < 140) {
+                  class1Divs[i].classList.remove("class1");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class1");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class1");
                 }
-                console.log(life);
-                // console.log(parseInt(divsArray[i].dataset.position));
               }
+
+              const class2Divs = document.querySelectorAll(".class2");
+
+              for (let i = 0; i < class2Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class2Divs[i].dataset.position
+                );
+                if (currentPosition < 140) {
+                  class2Divs[i].classList.remove("class2");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class2");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class2");
+                  clearInterval(intervalId);
+                }
+              }
+
+              const class3Divs = document.querySelectorAll(".class3");
+
+              for (let i = 0; i < class3Divs.length; i++) {
+                const currentPosition = parseInt(
+                  class3Divs[i].dataset.position
+                );
+                if (currentPosition < 140) {
+                  class3Divs[i].classList.remove("class3");
+                  const newPosition = currentPosition + 10;
+                  divsArray[newPosition].classList.add("class3");
+                  divsArray[newPosition].setAttribute(
+                    "data-position",
+                    newPosition
+                  );
+                } else if (currentPosition >= 140) {
+                  divsArray[currentPosition].classList.remove("class3");
+                }
+              }
+
+              for (let i = 0; i < divsArray.length; i++) {
+                if (
+                  divsArray[i].classList.contains("class2") &&
+                  divsArray[i].classList.contains("player")
+                ) {
+                  console.log("You lost a life, woups");
+
+                  life -= 1;
+                  console.log(life);
+                  // console.log(parseInt(divsArray[i].dataset.position));
+                }
+              }
+
+              for (let i = 0; i < divsArray.length; i++) {
+                if (
+                  divsArray[i].classList.contains("class3") &&
+                  divsArray[i].classList.contains("player")
+                ) {
+                  console.log("You found a sword");
+                  const swordImg = document.createElement("div");
+                  swordImg.classList.add("sword");
+                  swordContainer.appendChild(swordImg);
+                  if (swordContainer.children.length === 15) {
+                    alert("you win");
+                  }
+                  console.log(life);
+                  // console.log(parseInt(divsArray[i].dataset.position));
+                }
+              }
+
+              if (
+                !document.querySelector(".class1") &&
+                !document.querySelector(".class2") &&
+                !document.querySelector(".class3")
+              ) {
+                bossAttack2();
+              }
+            }, 100);
+
+            // document.addEventListener("keydown", function (event) {
+            //   const divsArray = document.querySelectorAll(".cell");
+
+            //   const cellUp = divsArray[playerPosition],
+            //     cellDown = divsArray[playerPosition],
+            //     cellLeft = divsArray[playerPosition - 1],
+            //     cellRight = divsArray[playerPosition + 1];
+
+            //   if (
+            //     event.key === "ArrowUp" &&
+            //     cellUp.classList.contains("class2")
+            //   ) {
+            //     console.log("you went up and lost a life");
+            //     console.log(divsArray[playerPosition]);
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellDown.classList.contains("class2") &&
+            //     event.key === "ArrowDown"
+            //   ) {
+            //     console.log("you went down and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellLeft.classList.contains("class2") &&
+            //     event.key === "ArrowLeft"
+            //   ) {
+            //     console.log("you went left and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   } else if (
+            //     cellRight.classList.contains("class2") &&
+            //     event.key === "ArrowRight"
+            //   ) {
+            //     console.log("you went right and lost a life");
+            //     life -= 1;
+            //     console.log(life);
+            //     if (life === 0) {
+            //       alert("Game over!");
+            //     }
+            //   }
+
+            //   if (
+            //     event.key === "ArrowUp" &&
+            //     cellUp.classList.contains("class3")
+            //   ) {
+            //     const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length === 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   } else if (
+            //     cellLeft.classList.contains("class3") &&
+            //     event.key === "ArrowLeft"
+            //   ) {
+            //     // const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length >= 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   } else if (
+            //     cellRight.classList.contains("class3") &&
+            //     event.key === "ArrowRight"
+            //   ) {
+            //     // const swordImg = document.createElement("div");
+            //     swordImg.classList.add("sword");
+            //     swordContainer.appendChild(swordImg);
+            //     if (swordContainer.children.length >= 5) {
+            //       alert("You WIIIN");
+            //     }
+            //   }
+            // });
+            if (swordContainer.children.length === 15) {
+              alert("you win");
             }
-
-            if (
-              !document.querySelector(".class1") &&
-              !document.querySelector(".class2") &&
-              !document.querySelector(".class3")
-            ) {
-              bossAttack1();
-            }
-          }, 250);
-
-          document.addEventListener("keydown", function (event) {
-            const divsArray = document.querySelectorAll(".cell");
-
-            const cellUp = divsArray[playerPosition],
-              cellDown = divsArray[playerPosition],
-              cellLeft = divsArray[playerPosition - 1],
-              cellRight = divsArray[playerPosition + 1];
-
-            if (
-              event.key === "ArrowUp" &&
-              cellUp.classList.contains("class2")
-            ) {
-              console.log("you went up and lost a life");
-              console.log(divsArray[playerPosition]);
-              life -= 1;
-              console.log(life);
-            } else if (
-              cellDown.classList.contains("class2") &&
-              event.key === "ArrowDown"
-            ) {
-              console.log("you went down and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            } else if (
-              cellLeft.classList.contains("class2") &&
-              event.key === "ArrowLeft"
-            ) {
-              console.log("you went left and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            } else if (
-              cellRight.classList.contains("class2") &&
-              event.key === "ArrowRight"
-            ) {
-              console.log("you went right and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            }
-
-            if (
-              event.key === "ArrowUp" &&
-              cellUp.classList.contains("class3")
-            ) {
-              const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length === 5) {
-                alert("You WIIIN");
-              }
-            } else if (
-              cellLeft.classList.contains("class3") &&
-              event.key === "ArrowLeft"
-            ) {
-              // const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length >= 5) {
-                alert("You WIIIN");
-              }
-            } else if (
-              cellRight.classList.contains("class3") &&
-              event.key === "ArrowRight"
-            ) {
-              // const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length >= 5) {
-                alert("You WIIIN");
-              }
-            }
-          });
-        } // FIN DE LA FONCTION BOSS ATTAQUE 1
-        if (life === 0) {
-          alert("Game over!");
-        }
-        if (swordContainer.children.length === 5) {
-          alert("you win");
-        }
-
-        function bossAttack2() {
-          for (let i = 0; i < 10; i++) {
-            const randomNum = Math.floor(Math.random() * 10);
-            if (randomNum < 2) {
-              divsArray[i].classList.add("class1");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
-            } else if (randomNum < 8) {
-              divsArray[i].classList.add("class2");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
-            } else if (randomNum >= 8) {
-              divsArray[i].classList.add("class3");
-              divsArray[i].setAttribute("data-position", i);
-              currentPosition = i;
+            if (life === 0) {
+              alert("Game over!");
             }
           }
-
-          intervalId = setInterval(() => {
-            const class1Divs = document.querySelectorAll(".class1");
-            // let counterAttack = 0
-
-            for (let i = 0; i < class1Divs.length; i++) {
-              const currentPosition = parseInt(class1Divs[i].dataset.position);
-
-              if (currentPosition < 140) {
-                class1Divs[i].classList.remove("class1");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class1");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
-                );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class1");
-              }
-            }
-
-            const class2Divs = document.querySelectorAll(".class2");
-
-            for (let i = 0; i < class2Divs.length; i++) {
-              const currentPosition = parseInt(class2Divs[i].dataset.position);
-              if (currentPosition < 140) {
-                class2Divs[i].classList.remove("class2");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class2");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
-                );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class2");
-                clearInterval(intervalId);
-              }
-            }
-
-            const class3Divs = document.querySelectorAll(".class3");
-
-            for (let i = 0; i < class3Divs.length; i++) {
-              const currentPosition = parseInt(class3Divs[i].dataset.position);
-              if (currentPosition < 140) {
-                class3Divs[i].classList.remove("class3");
-                const newPosition = currentPosition + 10;
-                divsArray[newPosition].classList.add("class3");
-                divsArray[newPosition].setAttribute(
-                  "data-position",
-                  newPosition
-                );
-              } else if (currentPosition >= 140) {
-                divsArray[currentPosition].classList.remove("class3");
-              }
-            }
-
-            for (let i = 0; i < divsArray.length; i++) {
-              if (
-                divsArray[i].classList.contains("class2") &&
-                divsArray[i].classList.contains("player")
-              ) {
-                console.log("You lost a life, woups");
-
-                life -= 1;
-                console.log(life);
-                // console.log(parseInt(divsArray[i].dataset.position));
-              }
-            }
-
-            for (let i = 0; i < divsArray.length; i++) {
-              if (
-                divsArray[i].classList.contains("class3") &&
-                divsArray[i].classList.contains("player")
-              ) {
-                console.log("You found a sword");
-                const swordImg = document.createElement("div");
-                swordImg.classList.add("sword");
-                swordContainer.appendChild(swordImg);
-                if (swordContainer.children.length === 5) {
-                  alert("you win");
-                }
-                console.log(life);
-                // console.log(parseInt(divsArray[i].dataset.position));
-              }
-            }
-
-            if (
-              !document.querySelector(".class1") &&
-              !document.querySelector(".class2") &&
-              !document.querySelector(".class3")
-            ) {
-              bossAttack2();
-            }
-          }, 250);
-
-          document.addEventListener("keydown", function (event) {
-            const divsArray = document.querySelectorAll(".cell");
-
-            const cellUp = divsArray[playerPosition],
-              cellDown = divsArray[playerPosition],
-              cellLeft = divsArray[playerPosition - 1],
-              cellRight = divsArray[playerPosition + 1];
-
-            if (
-              event.key === "ArrowUp" &&
-              cellUp.classList.contains("class2")
-            ) {
-              console.log("you went up and lost a life");
-              console.log(divsArray[playerPosition]);
-              life -= 1;
-              console.log(life);
-            } else if (
-              cellDown.classList.contains("class2") &&
-              event.key === "ArrowDown"
-            ) {
-              console.log("you went down and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            } else if (
-              cellLeft.classList.contains("class2") &&
-              event.key === "ArrowLeft"
-            ) {
-              console.log("you went left and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            } else if (
-              cellRight.classList.contains("class2") &&
-              event.key === "ArrowRight"
-            ) {
-              console.log("you went right and lost a life");
-              life -= 1;
-              console.log(life);
-              if (life === 0) {
-                alert("Game over!");
-              }
-            }
-
-            if (
-              event.key === "ArrowUp" &&
-              cellUp.classList.contains("class3")
-            ) {
-              const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length === 5) {
-                alert("You WIIIN");
-              }
-            } else if (
-              cellLeft.classList.contains("class3") &&
-              event.key === "ArrowLeft"
-            ) {
-              // const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length >= 5) {
-                alert("You WIIIN");
-              }
-            } else if (
-              cellRight.classList.contains("class3") &&
-              event.key === "ArrowRight"
-            ) {
-              // const swordImg = document.createElement("div");
-              swordImg.classList.add("sword");
-              swordContainer.appendChild(swordImg);
-              if (swordContainer.children.length >= 5) {
-                alert("You WIIIN");
-              }
-            }
-          });
-        } ///////      BOSS ATTACK 2
-      });
-
-      dialogDivBoss.appendChild(dialogTextBoss);
-      dialogDivBoss.appendChild(buttonBoss);
-
-      document.body.appendChild(dialogDivBoss);
+        });
+      };
     }
 
     createDialog();
@@ -1537,10 +1618,10 @@ document.addEventListener("keydown", (event) => {
         move4("left");
         break;
       case "ArrowDown":
-        move4("down");
+        displayPlayer4();
         break;
       case "ArrowUp":
-        move4("up");
+        displayPlayer4();
         break;
     }
   }
