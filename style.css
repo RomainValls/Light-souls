@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "VT323", monospace;
 }
 
 body {
@@ -7,20 +8,32 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 10px;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("https://i.pinimg.com/originals/4e/54/76/4e547671f67ee74d481a2f381b09dd7b.png");
+  background-size: cover;
 }
 
 h2 {
   text-align: center;
-  border: 3px solid black;
+  border: 4px solid #132a13;
+  color: white;
+  font-size: 32px;
 }
 
+p {
+  font-size: 20px;
+}
 .user-interface {
+  height: 93vh;
   display: none;
-  aspect-ratio: 1;
-  width: 505px;
+  width: 60vw;
   margin: 10px;
   flex-direction: column;
+  border: 4px solid #31572c;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 #swordContainer {
@@ -32,6 +45,15 @@ h2 {
   height: 120px;
 }
 
+.grid {
+  background-image: url("images/mapLevel1V2.png");
+  background-size: cover;
+  border: 2px solid white;
+  width: 505px;
+  aspect-ratio: 2;
+  display: none;
+  flex-wrap: wrap;
+}
 .class2 {
   background: #fff url("images/CampFireFinished.png") 0 0 / 205px no-repeat;
   animation: sprite-animation 0.4s steps(5) infinite;
@@ -78,10 +100,14 @@ h2 {
 }
 
 .sword {
-  background-image: url("images/dagger.png");
+  background-image: url("images/sword_spin.gif");
   background-size: cover;
-  height: 11rem;
-  width: 11rem;
+  height: 6rem;
+  border: 3px solid #053056;
+  border-radius: 45px;
+  border-width: 10px;
+  margin: 1rem;
+  aspect-ratio: 1;
 }
 
 .shoes {
@@ -89,7 +115,7 @@ h2 {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 20px;
-  margin: 3rem;
+  margin: 1rem;
   height: 116px;
   width: 100px;
 }
@@ -97,24 +123,34 @@ h2 {
 #start {
   margin-bottom: 20px;
   height: 150px;
-  margin: 5px;
+  width: 20rem;
   border-radius: 20px;
-}
-.grid {
-  width: 505px;
-  aspect-ratio: 2;
-  display: flex;
-  flex-wrap: wrap;
+
+  background-color: #ecf39e;
+  border: 10px solid #053056;
 }
 
 .cell {
   width: 10%;
   aspect-ratio: 1;
-  border: 1px solid black;
+  /* border: 0.2px solid black; */
 }
 
-.target {
-  background-color: chartreuse;
+.targetTwo {
+  background-image: url("images/IdleWizard.png");
+  height: 47px;
+  width: 31px;
+  animation: idleWizard 0.5s steps(5) infinite;
+  /* transform: translateX(50px); */
+}
+
+@keyframes idleWizard {
+  0% {
+    background-position: -43px -28px;
+  }
+  100% {
+    background-position: -650px -28px;
+  }
 }
 
 .exit {
@@ -142,32 +178,72 @@ h2 {
   text-align: center;
 }
 .targetThree {
-  background-image: url("images/alligator.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-image: url("images/Idle-huntress.png");
+  width: 32px;
+  height: 42px;
+  animation: idleHuntress 0.7s steps(7) infinite;
+}
+@keyframes idleHuntress {
+  0% {
+    background-position: -61px -55px;
+  }
+  100% {
+    background-position: -1111px -55px;
+  }
 }
 
 .targetFour {
-  background-color: aquamarine;
+  background-image: url("images/IdleWizard.png");
+  height: 47px;
+  width: 31px;
+  animation: idleWizard 0.5s steps(5) infinite;
 }
 
 .targetFive {
-  background-color: pink;
+  background-image: url("images/redHoodIdle.png");
+  height: 32px;
+  width: 32px;
+  animation: idleRedHood 1.1s steps(11) infinite;
 }
-.targetSix {
-  background-image: url("images/alligator.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+@keyframes idleRedHood {
+  0% {
+    background-position: -49px -66px;
+  }
+  100% {
+    background-position: -1278px -67px;
+  }
 }
 
-.targetTwo {
-  background-color: orangered;
+.targetSix {
+  background-image: url("images/IdleWizard.png");
+  height: 47px;
+  width: 31px;
+  animation: idleWizard 0.5s steps(5) infinite;
+}
+
+.target {
+  background-image: url("images/IdleKnight.png");
+  width: 31px;
+  height: 37px;
+  animation: idleKnight 1s steps(10) infinite;
+  filter: hue-rotate(90deg);
+}
+
+@keyframes idleKnight {
+  0% {
+    background-position: -48px -39px;
+  }
+  100% {
+    background-position: -1321px -39px;
+  }
 }
 
 .player {
-  background-color: dodgerblue;
+  background-image: url("images/IdleKnight.png");
+  /* background-color: red; */
+  width: 32px;
+  height: 39px;
+  animation: idleKnight 1s steps(10) infinite;
 }
 
 .finalBoss {
@@ -177,24 +253,84 @@ h2 {
   background-size: cover;
 }
 
+#button1,
+#button2,
+#button3,
+#button4,
+#button3Bis,
+#button4Bis,
+#button5,
+#button6,
+#button7,
+#correctSongButton,
+#wrongSongButton,
+#correctNameButton,
+#wrongNameButton,
+#cilckme {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #132a13;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
 #dialog1,
 #dialog3,
 #dialog4,
 #dialog5,
-#dialog6 {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
+#dialog6,
+#correctSongDiv,
+#wrongSongDiv,
+#correctNameDiv,
+#wrongNameDiv {
+  border: 4px solid #31572c;
+  position: absolute;
+  background-color: #ecf39e;
+  width: 50vw;
+  height: 50vh;
   display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
+  border-radius: 20px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  padding: 2rem;
 }
 
+#stealAllText,
+#getTwoSwordsText {
+  border: 4px solid #31572c;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  background-color: #ecf39e;
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  padding: 2rem;
+}
+#dialog2 {
+  border: 4px solid #31572c;
+  position: absolute;
+  background-color: #ecf39e;
+  width: 60vh;
+  height: 60vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  padding: 2.5rem;
+}
 #startBossFightDiv {
   border: 2px solid black;
   position: fixed;
@@ -294,40 +430,44 @@ h2 {
   padding: 10px;
 }
 
-#dialog1 p {
+#dialog1 p,
+#dialog2 p,
+#dialog3 p,
+#dialog4 p,
+#dialog5 p,
+#dialog6 p {
   padding: 10px;
+  color: #132a13;
+  font-size: 20px;
 }
 
-#dialog2 {
-  border: 2px solid black;
-  position: fixed;
-  top: 80vh;
-  left: 50%;
-  width: 60vw;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
+#playBtn1 {
+  background-image: url("images/ocarina.png");
+  background-size: cover;
+  height: 5rem;
+  aspect-ratio: 1;
+  margin: 10px;
+  padding: 10px 20px;
 
-#dialog2 p {
-  padding: 10px;
-}
+  background-color: transparent;
 
-#button1,
-#button2,
-#button3,
-#button4,
-#button3Bis,
-#button4Bis {
+  cursor: pointer;
+
+  width: fit-content;
+}
+#stealAllButton,
+#getTwoSwordsButton {
+  position: absolute;
+  top: 50%;
+  left: 40%;
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #132a13;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .button:hover {
@@ -398,19 +538,7 @@ h2 {
   border-radius: 5px;
   cursor: pointer;
 }
-#correctSongDiv {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
-}
+
 #wrongSongDiv {
   border: 2px solid black;
   position: fixed;
@@ -429,35 +557,39 @@ h2 {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #132a13;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }
 #starWarsButton {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #132a13;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }
 #zeldaButton {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #132a13;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }
-#marioButton {
+#pokemonButton {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #132a13;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
 }

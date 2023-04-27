@@ -5,7 +5,7 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 3;
+let level = 1;
 let swordDivs = document.getElementsByClassName("sword");
 let shoesContainer = document.getElementById("shoesContainer");
 const swordContainer = document.getElementById("swordContainer");
@@ -27,7 +27,7 @@ playBtn1.addEventListener("click", () => {
     playBtn1.innerHTML = "Play Music";
   } else {
     audio1.play();
-    playBtn1.innerHTML = "Pause Music";
+    playBtn1.innerHTML = "";
   }
   isPlaying = !isPlaying;
 });
@@ -40,8 +40,10 @@ function playAudio() {
 // END OF MUSIC PART
 
 function startTheGame() {
+  startButton.style.display = "none";
   userInterface.style.display = "flex";
   userInterface.style.backgroundColor = "transparent";
+  gridElement.style.display = "flex";
 
   if (level === 1) {
     for (let i = 0; i < 150; i++) {
@@ -179,10 +181,10 @@ function move(direction) {
       dialogDiv.id = "dialog1";
       const dialogText = document.createElement("p");
       dialogText.textContent =
-        "Welcome adventurer ! MY name is Eoldurgodrof. I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment. Remember that you will need 15 swords to defeat the dragon. By taking the shoes, you might need to find others swords, but you could dodge dragon's attacks more easily...";
+        "Welcome adventurer ! MY name is Eoldorgudrof. I bet you're here to defeat the dragon, as everyone else ? Let me help you in your journey, choose an equipment. Remember that you will need 15 swords to defeat the dragon. By taking the shoes, you might need to find others swords, but you could dodge dragon's attacks more easily...";
       const button1 = document.createElement("button");
       button1.id = "button1";
-      button1.textContent = "I want the sword !!!";
+      button1.textContent = "The sword ! The sword !!! ";
       button1.addEventListener("click", () => {
         choice = "sword";
         dialogDiv.remove();
@@ -196,7 +198,7 @@ function move(direction) {
       });
       const button2 = document.createElement("button");
       button2.id = "button2";
-      button2.textContent = "I'd rather take your shoes.";
+      button2.textContent = "Your shoes look nice...";
       button2.addEventListener("click", () => {
         choice = "shoes";
         dialogDiv.remove();
@@ -837,14 +839,14 @@ function move3(direction) {
       dialogDivFive.id = "dialog5";
       const dialogTextFive = document.createElement("p");
       dialogTextFive.textContent =
-        "Hey, you !! I've been stuck here for, I think, a year or two. I could escape by calling the strange guy of the beginning of the dungeon, but in order to call him, I need to remember it's name correctly, can you help ? I'll give you my sword if you give me the right name.";
+        "Hey, you !! I've been stuck here for, I think, a year or two. I could escape by calling the strange guy at the beginning of the dungeon, but in order to call him, I need to remember it's name correctly, can you help ? I'll give you my sword if you give me the right name.";
 
       let correctNameChoice;
       let wrongNameChoice;
 
       const button9 = document.createElement("button");
       button9.id = "button9";
-      button9.textContent = "I think it was Eoldurgodrof";
+      button9.textContent = "I think it was Eoldorgudrof";
 
       button9.addEventListener("click", () => {
         correctNameChoice = true;
@@ -877,7 +879,7 @@ function move3(direction) {
       });
       const button10 = document.createElement("button");
       button10.id = "button10";
-      button10.textContent = "It was Eoldorgodruf, for sure";
+      button10.textContent = "It was Eoldurgodrof, for sure";
       button10.addEventListener("click", () => {
         wrongNameChoice = true;
         dialogDivFive.remove();
@@ -959,27 +961,47 @@ function move3(direction) {
               clickerDiv.remove();
 
               function youLost() {
-                const youLostDiv = document.createElement("div");
-                youLostDiv.id = "youLostDiv";
-                const giveSwordButton = document.createElement("button");
-                giveSwordButton.id = "giveSwordButton";
+                if (swordContainer.length > 0) {
+                  const youLostDiv = document.createElement("div");
+                  youLostDiv.id = "youLostDiv";
+                  const giveSwordButton = document.createElement("button");
+                  giveSwordButton.id = "giveSwordButton";
 
-                const lostText = document.createElement("h3");
-                lostText.id = "lostText";
-                lostText.textContent =
-                  "The gate didn't break... I can help you :D if you give me one of your equipment in return.>:c";
+                  const lostText = document.createElement("h3");
+                  lostText.id = "lostText";
+                  lostText.textContent =
+                    "The gate didn't break... I can help you :D if you give me one of your equipment in return.>:c";
 
-                youLostDiv.appendChild(lostText);
-                youLostDiv.appendChild(giveSwordButton);
+                  youLostDiv.appendChild(lostText);
+                  youLostDiv.appendChild(giveSwordButton);
 
-                document.body.appendChild(youLostDiv);
+                  document.body.appendChild(youLostDiv);
 
-                giveSwordButton.onclick = function () {
-                  let lastDiv = swordContainer.lastElementChild;
-                  swordContainer.removeChild(lastDiv);
+                  giveSwordButton.onclick = function () {
+                    let lastDiv = swordContainer.lastElementChild;
+                    swordContainer.removeChild(lastDiv);
 
-                  youLostDiv.remove();
-                };
+                    youLostDiv.remove();
+                  };
+                } else {
+                  const youLostDivTwo = document.createElement("div");
+                  youLostDivTwo.id = "youLostDivTwo";
+                  const youLostDivTwoText = document.createElement("p");
+                  youLostDivTwoText.id = "youLostDivTwoText";
+                  youLostDivTwoText.textContent =
+                    "Well, you failed this challenge... I can also see you have zero sword... What a shame... I can help you open the gate this time...";
+                  const youLostDivTwoButton = document.createElement("button");
+                  youLostDivTwoButton.id = "youLostDivTwoButton";
+                  youLostDivTwoButton.textContent =
+                    "Thanks dude. I might get killed by the dragon, so it's the least you can do in my opinion...";
+                  youLostDivTwo.appendChild(youLostDivTwoText);
+                  youLostDivTwo.appendChild(youLostDivTwoButton);
+                  document.body.appendChild(youLostDivTwo);
+
+                  youLostDivTwoButton.onclick = function () {
+                    youLostDivTwo.remove();
+                  };
+                }
               }
               youLost();
             }
@@ -1010,6 +1032,9 @@ function move3(direction) {
     }
   } else if (allTheCells[playerPosition].classList.contains("exit")) {
     hidePlayer();
+    if (isPlaying) {
+      audio1.pause();
+    }
     const bossSong = document.getElementById("bossSong");
     bossSong.play();
     level = 4; // LEVEL = 4 une fois level 4 fait
