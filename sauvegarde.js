@@ -248,3 +248,171 @@ button12.addEventListener("click", () => {
     clickerButton.innerHTML = "Click me: " + count;
   };
 });
+
+// document.addEventListener("keydown", function (event) {
+//   const divsArray = document.querySelectorAll(".cell");
+
+//   const cellUp = divsArray[playerPosition],
+//     cellDown = divsArray[playerPosition],
+//     cellLeft = divsArray[playerPosition - 1],
+//     cellRight = divsArray[playerPosition + 1];
+
+//   if (
+//     event.key === "ArrowUp" &&
+//     cellUp.classList.contains("class2")
+//   ) {
+//     console.log("you went up and lost a life");
+//     console.log(divsArray[playerPosition]);
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellDown.classList.contains("class2") &&
+//     event.key === "ArrowDown"
+//   ) {
+//     console.log("you went down and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellLeft.classList.contains("class2") &&
+//     event.key === "ArrowLeft"
+//   ) {
+//     console.log("you went left and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellRight.classList.contains("class2") &&
+//     event.key === "ArrowRight"
+//   ) {
+//     console.log("you went right and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   }
+
+//   if (
+//     event.key === "ArrowUp" &&
+//     cellUp.classList.contains("class3")
+//   ) {
+//     const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length === 5) {
+//       alert("You WIIIN");
+//     }
+//   } else if (
+//     cellLeft.classList.contains("class3") &&
+//     event.key === "ArrowLeft"
+//   ) {
+//     // const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length >= 5) {
+//       alert("You WIIIN");
+//     }
+//   } else if (
+//     cellRight.classList.contains("class3") &&
+//     event.key === "ArrowRight"
+//   ) {
+//     // const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length >= 5) {
+//       alert("You WIIIN");
+//     }
+//   }
+// });
+
+// document.addEventListener("keydown", function (event) {
+//   const divsArray = document.querySelectorAll(".cell");
+
+//   const cellUp = divsArray[playerPosition],
+//     cellDown = divsArray[playerPosition],
+//     cellLeft = divsArray[playerPosition - 1],
+//     cellRight = divsArray[playerPosition + 1];
+
+//   if (
+//     event.key === "ArrowUp" &&
+//     cellUp.classList.contains("class2")
+//   ) {
+//     console.log("you went up and lost a life");
+//     console.log(divsArray[playerPosition]);
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellDown.classList.contains("class2") &&
+//     event.key === "ArrowDown"
+//   ) {
+//     console.log("you went down and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellLeft.classList.contains("class2") &&
+//     event.key === "ArrowLeft"
+//   ) {
+//     console.log("you went left and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   } else if (
+//     cellRight.classList.contains("class2") &&
+//     event.key === "ArrowRight"
+//   ) {
+//     console.log("you went right and lost a life");
+//     life -= 1;
+//     console.log(life);
+//     if (life === 0) {
+//       alert("Game over!");
+//     }
+//   }
+
+//   if (
+//     event.key === "ArrowUp" &&
+//     cellUp.classList.contains("class3")
+//   ) {
+//     const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length === 5) {
+//       alert("You WIIIN");
+//     }
+//   } else if (
+//     cellLeft.classList.contains("class3") &&
+//     event.key === "ArrowLeft"
+//   ) {
+//     // const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length >= 5) {
+//       alert("You WIIIN");
+//     }
+//   } else if (
+//     cellRight.classList.contains("class3") &&
+//     event.key === "ArrowRight"
+//   ) {
+//     // const swordImg = document.createElement("div");
+//     swordImg.classList.add("sword");
+//     swordContainer.appendChild(swordImg);
+//     if (swordContainer.children.length >= 5) {
+//       alert("You WIIIN");
+//     }
+//   }
+// });

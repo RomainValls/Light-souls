@@ -5,7 +5,7 @@ let playerPosition;
 const userInterface = document.querySelector(".user-interface");
 let target;
 let target2;
-let level = 1;
+let level = 3;
 let swordDivs = document.getElementsByClassName("sword");
 let shoesContainer = document.getElementById("shoesContainer");
 const swordContainer = document.getElementById("swordContainer");
@@ -1028,6 +1028,50 @@ function displayTarget7() {
   allTheCells[target].classList.add("finalBoss");
 }
 
+function winAlert() {
+  const winAlert = document.createElement("div");
+  winAlert.id = "winAlert";
+  const winAlertText = document.createElement("h3");
+  winAlertText.id = "winAlertText";
+  winAlertText.textContent = "YIHAAA, THE DRAGON IS SMOKED !";
+  const winAlertButton = document.createElement("button");
+  winAlertButton.id = "winAlertButton";
+  winAlertButton.textContent = "Let's start again ?";
+
+  winAlert.appendChild(winAlertText);
+  winAlert.appendChild(winAlertButton);
+  document.body.appendChild(winAlert);
+
+  winAlertButton.onclick = function () {
+    winAlert.remove();
+    level = 1;
+    clearGrid();
+    startTheGame();
+  };
+}
+
+function loseAlert() {
+  const loseAlert = document.createElement("div");
+  loseAlert.id = "loseAlert";
+  const loseAlertText = document.createElement("h3");
+  loseAlertText.id = "loseAlertText";
+  loseAlertText.textContent = "Pshhhht... You're just a pile of ashes now...";
+  const loseAlertButton = document.createElement("button");
+  loseAlertButton.id = "loseAlertButton";
+  loseAlertButton.textContent = "Let's start again ?";
+
+  loseAlert.appendChild(loseAlertText);
+  loseAlert.appendChild(loseAlertButton);
+  document.body.appendChild(loseAlert);
+
+  loseAlertButton.onclick = function () {
+    loseAlert.remove();
+    level = 1;
+    clearGrid();
+    startTheGame();
+  };
+}
+
 function createACell4(position) {
   const div = document.createElement("div");
   div.classList.add("cell");
@@ -1227,7 +1271,8 @@ function move4(direction) {
                   swordImg.classList.add("sword");
                   swordContainer.appendChild(swordImg);
                   if (swordContainer.children.length === 15) {
-                    alert("you win");
+                    clearInterval(intervalId);
+                    winAlert();
                   }
                   console.log(life);
                   // console.log(parseInt(divsArray[i].dataset.position));
@@ -1243,94 +1288,13 @@ function move4(direction) {
               }
             }, 75);
 
-            // document.addEventListener("keydown", function (event) {
-            //   const divsArray = document.querySelectorAll(".cell");
-
-            //   const cellUp = divsArray[playerPosition],
-            //     cellDown = divsArray[playerPosition],
-            //     cellLeft = divsArray[playerPosition - 1],
-            //     cellRight = divsArray[playerPosition + 1];
-
-            //   if (
-            //     event.key === "ArrowUp" &&
-            //     cellUp.classList.contains("class2")
-            //   ) {
-            //     console.log("you went up and lost a life");
-            //     console.log(divsArray[playerPosition]);
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellDown.classList.contains("class2") &&
-            //     event.key === "ArrowDown"
-            //   ) {
-            //     console.log("you went down and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellLeft.classList.contains("class2") &&
-            //     event.key === "ArrowLeft"
-            //   ) {
-            //     console.log("you went left and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellRight.classList.contains("class2") &&
-            //     event.key === "ArrowRight"
-            //   ) {
-            //     console.log("you went right and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   }
-
-            //   if (
-            //     event.key === "ArrowUp" &&
-            //     cellUp.classList.contains("class3")
-            //   ) {
-            //     const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length === 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   } else if (
-            //     cellLeft.classList.contains("class3") &&
-            //     event.key === "ArrowLeft"
-            //   ) {
-            //     // const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length >= 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   } else if (
-            //     cellRight.classList.contains("class3") &&
-            //     event.key === "ArrowRight"
-            //   ) {
-            //     // const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length >= 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   }
-            // });
             if (swordContainer.children.length === 15) {
-              alert("you win");
+              clearInterval(intervalId);
+              winAlert();
             }
             if (life === 0) {
-              alert("Game over!");
+              clearInterval(intervalId);
+              loseAlert();
             }
           }
 
@@ -1436,7 +1400,8 @@ function move4(direction) {
                   swordImg.classList.add("sword");
                   swordContainer.appendChild(swordImg);
                   if (swordContainer.children.length === 15) {
-                    alert("you win");
+                    clearInterval(intervalId);
+                    winAlert();
                   }
                   console.log(life);
                   // console.log(parseInt(divsArray[i].dataset.position));
@@ -1452,94 +1417,13 @@ function move4(direction) {
               }
             }, 100);
 
-            // document.addEventListener("keydown", function (event) {
-            //   const divsArray = document.querySelectorAll(".cell");
-
-            //   const cellUp = divsArray[playerPosition],
-            //     cellDown = divsArray[playerPosition],
-            //     cellLeft = divsArray[playerPosition - 1],
-            //     cellRight = divsArray[playerPosition + 1];
-
-            //   if (
-            //     event.key === "ArrowUp" &&
-            //     cellUp.classList.contains("class2")
-            //   ) {
-            //     console.log("you went up and lost a life");
-            //     console.log(divsArray[playerPosition]);
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellDown.classList.contains("class2") &&
-            //     event.key === "ArrowDown"
-            //   ) {
-            //     console.log("you went down and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellLeft.classList.contains("class2") &&
-            //     event.key === "ArrowLeft"
-            //   ) {
-            //     console.log("you went left and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   } else if (
-            //     cellRight.classList.contains("class2") &&
-            //     event.key === "ArrowRight"
-            //   ) {
-            //     console.log("you went right and lost a life");
-            //     life -= 1;
-            //     console.log(life);
-            //     if (life === 0) {
-            //       alert("Game over!");
-            //     }
-            //   }
-
-            //   if (
-            //     event.key === "ArrowUp" &&
-            //     cellUp.classList.contains("class3")
-            //   ) {
-            //     const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length === 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   } else if (
-            //     cellLeft.classList.contains("class3") &&
-            //     event.key === "ArrowLeft"
-            //   ) {
-            //     // const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length >= 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   } else if (
-            //     cellRight.classList.contains("class3") &&
-            //     event.key === "ArrowRight"
-            //   ) {
-            //     // const swordImg = document.createElement("div");
-            //     swordImg.classList.add("sword");
-            //     swordContainer.appendChild(swordImg);
-            //     if (swordContainer.children.length >= 5) {
-            //       alert("You WIIIN");
-            //     }
-            //   }
-            // });
             if (swordContainer.children.length === 15) {
-              alert("you win");
+              clearInterval(intervalId);
+              winAlert();
             }
             if (life === 0) {
-              alert("Game over!");
+              clearInterval(intervalId);
+              loseAlert();
             }
           }
         });
@@ -1551,10 +1435,12 @@ function move4(direction) {
   }
 }
 if (life === 0) {
-  alert("Game over!");
+  clearInterval(intervalId);
+  loseAlert();
 }
-if (swordDivs.length === 5) {
-  alert("You WIIIN");
+if (swordContainer.length === 15) {
+  clearInterval(intervalId);
+  winAlert();
 }
 document.addEventListener("keydown", (event) => {
   if (level === 1) {
