@@ -1038,6 +1038,7 @@ function move3(direction) {
     if (isPlaying) {
       audio1.pause();
     }
+    const grid = document.getElementsByClassName("grid");
     const bossSong = document.getElementById("bossSong");
     bossSong.play();
     level = 4; // LEVEL = 4 une fois level 4 fait

@@ -47,7 +47,7 @@ p {
 }
 
 .grid {
-  background-image: url("images/mapLevel1V2.png");
+  background-image: url("./images/mapLevel1V2.png");
   background-size: cover;
   border: 2px solid white;
   width: 505px;
