@@ -55,21 +55,25 @@ p {
   flex-wrap: wrap;
 }
 .class2 {
-  background: #fff url("images/CampFireFinished.png") 0 0 / 205px no-repeat;
-  animation: sprite-animation 0.4s steps(5) infinite;
+  background-image : url("images/burning_loop_1.png"); 
+  animation: fireSprite-animation 0.7s steps(7) infinite;
+  width: 20px;
+  height: 35px;
 }
 
-@keyframes sprite-animation {
-  from {
-    background-position: 0 0;
+@keyframes fireSprite-animation {
+  0% {
+    background-position: -8px -17px;
   }
-  to {
-    background-position: -205px 0;
+  100% {
+    background-position: -253px -15px;
   }
 }
 
 .class1 {
-  background-color: blue;
+  background-image: url('/images/8bitArrow.png');
+  background-color: transparent;
+  background-size: cover;
 }
 
 /* .class2 {
@@ -79,7 +83,7 @@ p {
 } */
 
 .class3 {
-  background-image: url("images/dagger.png");
+  background-image: url("images/sword_spin.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -164,9 +168,9 @@ p {
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 9rem;
-  height: 9rem;
+  width: 20rem;
 }
+
 .clicker button {
   justify-content: center;
   align-items: center;
@@ -262,11 +266,21 @@ p {
 #button5,
 #button6,
 #button7,
+#button9,
+#button10,
+#button12,
 #correctSongButton,
 #wrongSongButton,
 #correctNameButton,
 #wrongNameButton,
-#cilckme {
+#cilckme,
+#goodAnswerButton,
+#wrongAnswerButton,
+#getTwoSwordsButton,
+#youLostDivTwoButton,
+#startBossFightButton,
+#buttonBoss,
+#winAlertButton {
   margin: 10px;
   padding: 10px 20px;
   border: none;
@@ -277,15 +291,42 @@ p {
   border-radius: 10px;
 }
 
+#clickme {
+  /* margin: 10px;
+  padding: 10px 20px; */
+  border: 2px solid white;
+  background-color: #132a13;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+  height: 120px;
+  width: 360px;
+}
+
+.clicker h3 {
+  text-align: center;
+  font-size: 54px;
+  color: white;
+}
+
 #dialog1,
 #dialog3,
 #dialog4,
 #dialog5,
 #dialog6,
 #correctSongDiv,
-#wrongSongDiv,
 #correctNameDiv,
-#wrongNameDiv {
+#wrongNameDiv,
+#goodAnswerDiv,
+#wrongAnswerDiv,
+#answerMusicDiv,
+#getTwoSwords,
+#wrongSongDiv,
+#clickerDiv,
+#youLostDivTwo,
+#startBossFightDiv,
+#dialogBoss {
   border: 4px solid #31572c;
   position: absolute;
   background-color: #ecf39e;
@@ -300,8 +341,7 @@ p {
   padding: 2rem;
 }
 
-#stealAllText,
-#getTwoSwordsText {
+#stealAllText {
   border: 4px solid #31572c;
   position: fixed;
   top: 10%;
@@ -330,19 +370,6 @@ p {
   justify-content: space-evenly;
   /* align-items: center; */
   padding: 2.5rem;
-}
-#startBossFightDiv {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
 }
 
 #winAlert {
@@ -373,15 +400,7 @@ p {
   padding: 10px;
 }
 
-#winAlertButton {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 
 #loseAlertButton {
   margin: 10px;
@@ -391,30 +410,6 @@ p {
   color: white;
   border-radius: 5px;
   cursor: pointer;
-}
-
-#startBossFightButton {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#dialogBoss {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
 }
 
 #youLostDiv {
@@ -455,8 +450,7 @@ p {
 
   width: fit-content;
 }
-#stealAllButton,
-#getTwoSwordsButton {
+#stealAllButton {
   position: absolute;
   top: 50%;
   left: 40%;
@@ -512,47 +506,6 @@ p {
   height: 150px;
 }
 
-#wrongAnswerDiv,
-#goodAnswerDiv,
-#answerMusicDiv {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
-}
-
-#wrongAnswerButton,
-#goodAnswerButton {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#wrongSongDiv {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
-}
-
 #marioButton {
   margin: 10px;
   padding: 10px 20px;
@@ -593,3 +546,94 @@ p {
   cursor: pointer;
   border-radius: 10px;
 }
+
+#winAlert {
+  background-image: url('images/gifDragonDefeat.gif');
+  height: 400px;
+  width: auto;
+  border-radius: 15px;
+}
+
+
+
+.mo-fire {
+  
+  height: auto;
+  position: fixed;
+  left:40%;
+  bottom: -70px;
+  z-index: -1;
+}
+
+#svg-view {
+	width: 252px;
+	height: 125px;
+	left: 0px;
+}
+
+.mo-fire svg {
+  width: 100%;
+  height: auto;
+  position:relative;
+  right:40px;
+}
+.flame {
+  animation-name: flameDisappear;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.5;
+  transform-origin: 45% 45% 0;
+}
+.flame.one {
+  animation-delay: 1s;
+  animation-duration: 3s;
+}
+.flame.two{
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+
+.flame-main {
+  animation-name: flameMovement;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.flame-main.one {
+  animation-duration: 2.2s;
+  animation-delay: 1s;
+}
+.flame-main.two {
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+.flame-main.three {
+  animation-duration: 2.1s;
+  animation-delay: 3s;
+}
+.flame-main.four {
+  animation-duration: 3.2s;
+  animation-delay: 4s;
+}
+.flame-main.five {
+  animation-duration: 2.5s;
+  animation-delay: 5s;
+}
+@keyframes flameMovement {
+  50% {
+    transform: scale(0.98,1.0) translate(0, 2px) rotate(-1deg);
+  }
+}
+@keyframes flameDisappear {
+  0%{
+    transform: translate(0) rotate(180deg);
+  }
+  50% {
+     opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, -40px) rotate(180deg);
+    opacity: 0;
+  }

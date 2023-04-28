@@ -15,6 +15,9 @@ let choiceSong;
 let finalBoss;
 let life = 3;
 
+const fireDiv = document.querySelector(".mo-fire");
+fireDiv.style.display = "none";
+
 startButton.addEventListener("click", startTheGame);
 
 // MUSIC PART
@@ -338,7 +341,7 @@ function move(direction) {
 
       const button4Bis = document.createElement("button");
       button4Bis.id = "button4Bis";
-      button4Bis.textContent = "Rolling one for later";
+      button4Bis.textContent = "Taking a nap";
       button4Bis.addEventListener("click", () => {
         choiceTwo = "troll";
         wrongAnswer = true;
@@ -893,7 +896,7 @@ function move3(direction) {
             "Well, it doesn't seem to be working. If you can't remember, you're not having my sword, eh !!";
           const wrongNameButton = document.createElement("button");
           wrongNameButton.id = "wrongNameButton";
-          wrongNameButton.textContent = "Sure, thanks!";
+          wrongNameButton.textContent = "Wow. Rude. Stay stuck then byeee.";
           wrongNameButton.onclick = function () {
             wrongNameDiv.remove();
           };
@@ -933,7 +936,7 @@ function move3(direction) {
         const clickerDiv = document.createElement("div");
         clickerDiv.classList.add("clicker");
         const dialogClicker = document.createElement("h3");
-        dialogClicker.textContent = "Press me !!!";
+        dialogClicker.textContent = "Press me 50 times! You have 10 seconds.";
         const clickerButton = document.createElement("button");
         clickerButton.id = "clickme";
         clickerDiv.appendChild(dialogClicker);
@@ -945,7 +948,7 @@ function move3(direction) {
         clickerButton.onclick = function () {
           count += 1;
           clickerButton.innerHTML = "Click me: " + count;
-          if (count >= 65) {
+          if (count >= 50) {
             // Check if the player has clicked 100 times
             clearInterval(intervalId); // Stop the timer
             alert("You won!");
@@ -957,7 +960,7 @@ function move3(direction) {
           if (timer <= 0) {
             clearInterval(intervalId);
 
-            if (count < 65) {
+            if (count < 50) {
               clickerDiv.remove();
 
               function youLost() {
@@ -989,7 +992,7 @@ function move3(direction) {
                   const youLostDivTwoText = document.createElement("p");
                   youLostDivTwoText.id = "youLostDivTwoText";
                   youLostDivTwoText.textContent =
-                    "Well, you failed this challenge... I can also see you have zero sword... What a shame... I can help you open the gate this time...";
+                    "Well, you failed this challenge...  What a shame... I'll help you open the gate this time... (This guy has zero chance lol)";
                   const youLostDivTwoButton = document.createElement("button");
                   youLostDivTwoButton.id = "youLostDivTwoButton";
                   youLostDivTwoButton.textContent =
@@ -1039,6 +1042,7 @@ function move3(direction) {
     bossSong.play();
     level = 4; // LEVEL = 4 une fois level 4 fait
     playerPosition = 145;
+    fireDiv.style.removeProperty("display");
     startTheGame();
   }
 }
@@ -1317,6 +1321,7 @@ function move4(direction) {
               clearInterval(intervalId);
               winAlert();
             }
+
             if (life === 0) {
               clearInterval(intervalId);
               loseAlert();
@@ -1459,6 +1464,7 @@ function move4(direction) {
     allTheCells[playerPosition].classList.remove("finalBoss");
   }
 }
+
 if (life === 0) {
   clearInterval(intervalId);
   loseAlert();
