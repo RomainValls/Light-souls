@@ -280,7 +280,8 @@ p {
 #youLostDivTwoButton,
 #startBossFightButton,
 #buttonBoss,
-#winAlertButton {
+#winAlertButton,
+#loseAlertButton {
   margin: 10px;
   padding: 10px 20px;
   border: none;
@@ -372,42 +373,19 @@ p {
   padding: 2.5rem;
 }
 
-#winAlert {
-  border: 2px solid black;
-  position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
-}
-
 #loseAlert {
-  border: 2px solid black;
+  background-image: url("./images/kitty-cat.gif");
+  height: 600px;
+  width: 700px;
+  border-radius: 15px;
   position: fixed;
-  background-color: blueviolet;
-  /* top : 60vh;
-    left: 50%; */
-  width: auto;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding: 10px;
-}
-
-#loseAlertButton {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
   color: white;
-  border-radius: 5px;
-  cursor: pointer;
+  text-align: center;
+  top: 20%;
+  left: 30%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
 }
 
 #youLostDiv {
