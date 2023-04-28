@@ -34,12 +34,14 @@ p {
   border: 4px solid #31572c;
   border-radius: 10px;
   padding: 20px;
+  
 }
 
 #swordContainer {
   display: flex;
   flex-direction: row;
-  height: 200px;
+
+  flex-wrap: wrap;
 }
 #shoesContainer {
   height: 120px;
@@ -55,7 +57,7 @@ p {
   flex-wrap: wrap;
 }
 .class2 {
-  background-image : url("images/burning_loop_1.png"); 
+  background-image : url("/images/burning_loop_1.png"); 
   animation: fireSprite-animation 0.7s steps(7) infinite;
   width: 20px;
   height: 35px;
@@ -83,7 +85,7 @@ p {
 } */
 
 .class3 {
-  background-image: url("images/sword_spin.gif");
+  background-image: url("/images/sword_spin.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -106,7 +108,7 @@ p {
 .sword {
   background-image: url("images/sword_spin.gif");
   background-size: cover;
-  height: 6rem;
+  height: 4rem;
   border: 3px solid #053056;
   border-radius: 45px;
   border-width: 10px;
