@@ -23,6 +23,7 @@ When picking 15 swords, the player has enough strengh to defeat the dragon and w
 - Challenges are : Riddles, minigames, musical quizz.
 - Final boss : A dodge game where you need to collect swords.
 
+--- 
 
 ## What's coming next ? 
 
